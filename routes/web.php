@@ -1,0 +1,25 @@
+<?php
+
+use App\Http\Controllers\FeedbacksController;
+use App\Http\Controllers\SiteController;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CategoriesController;
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
+
+Route::resource('/',  SiteController::class);
+
+Route::resource('categories', CategoriesController::class);
+Route::resource('feedbacks', FeedbacksController::class);
+
+
+Route::get('site/about', [SiteController::class, 'about'])->name('site.about');
+Route::resource('site', SiteController::class);
