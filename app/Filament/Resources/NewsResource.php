@@ -2,10 +2,11 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\ContactResource\Pages;
-use App\Models\Contact;
-use App\Models\Partners;
+use App\Filament\Resources\NewsResource\Pages;
+use App\Models\News;
+use Filament\Forms;
 use Filament\Forms\Components\Card;
+use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
@@ -15,30 +16,30 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class ContactResource extends Resource
+class NewsResource extends Resource
 {
-    protected static ?string $model = Contact::class;
+    protected static ?string $model = News::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
-    protected static ?string $navigationGroup = 'Contacts';
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 Card::make()
                     ->schema([
-                        TextInput::make('address')
+                        TextInput::make('title_ru')
                             ->required(),
-                        TextInput::make('phone')
+                        TextInput::make('title_uz')
                             ->required(),
-                        TextInput::make('mail')
+                        TextInput::make('title_en')
                             ->required(),
-                        TextInput::make('open_hours')
-                            ->required(),
-                        TextInput::make('close_hours')
-                            ->required(),
-                        FileUpload::make('logo')
+                        DatePicker::make('date'),
+                        FileUpload::make('photo'),
+                        TextInput::make('description_ru'),
+                        TextInput::make('description_uz'),
+                        TextInput::make('description_en'),
+
                     ])
             ]);
     }
@@ -47,11 +48,9 @@ class ContactResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('address')->sortable(),
-                Tables\Columns\TextColumn::make('phone')->sortable(),
-                Tables\Columns\ImageColumn::make('logo'),
-                Tables\Columns\TextColumn::make('mail')->sortable(),
-
+                Tables\Columns\TextColumn::make('title_uz')->sortable(),
+                Tables\Columns\TextColumn::make('date')->sortable(),
+                Tables\Columns\ImageColumn::make('photo'),
             ])
             ->filters([
                 //
@@ -59,32 +58,33 @@ class ContactResource extends Resource
             ->actions([
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make()
-                    ->after(function (Contact $record) {
+                    ->after(function (News $record) {
                         if ($record->logo) {
-                            Contact::disk('public')->delete($record->logo);
+                            News::disk('public')->delete($record->logo);
                         }
                     } ),
                 Tables\Actions\ForceDeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
-
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ]);
     }
 
+    public static function getRelations(): array
+    {
+        return [
+            //
+        ];
+    }
+
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ManageContacts::route('/'),
+            'index' => Pages\ListNews::route('/'),
+            'create' => Pages\CreateNews::route('/create'),
+            'edit' => Pages\EditNews::route('/{record}/edit'),
         ];
-    }
-    public static function getEloquentQuery(): Builder
-    {
-        return parent::getEloquentQuery()
-            ->withoutGlobalScopes([
-                SoftDeletingScope::class,
-            ]);
     }
 }

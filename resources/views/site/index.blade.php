@@ -1,4 +1,8 @@
-@include('site.header')
+<x-main>
+
+<x-slot:title>
+    Bosh sahifa
+</x-slot:title>
 
 <!-- Main content Start -->
 <div class="main-content">
@@ -607,9 +611,10 @@
                 <h3>Latest News</h3>
             </div>
             <div class="rs-carousel owl-carousel" data-loop="true" data-items="3" data-margin="30" data-autoplay="true" data-autoplay-timeout="5000" data-smart-speed="2000" data-dots="false" data-nav="true" data-nav-speed="false" data-mobile-device="1" data-mobile-device-nav="true" data-mobile-device-dots="false" data-ipad-device="2" data-ipad-device-nav="true" data-ipad-device-dots="false" data-ipad-device2="1" data-ipad-device-nav2="true" data-ipad-device-dots2="false" data-md-device="3" data-md-device-nav="true" data-md-device-dots="false">
-                <div class="blog-item">
+             @foreach($news as $new)
+                <div class="blog-item" >
                     <div class="blog-img">
-                        <img src="images/blog/1.jpg" alt="Blog Image">
+                        <img src="{{ Storage::disk('public')->url($new->photo)}}" style="height: 350px" alt="Blog Image">
                         <div class="blog-img-content">
                             <div class="display-table">
                                 <div class="display-table-cell">
@@ -620,160 +625,21 @@
                             </div>
                         </div>
                     </div>
-                    <div class="content-wrapper">
+                    <div class="content-wrapper" >
                         <div class="blog-meta">
                             <ul>
-                                <li><i class="fa fa-user"></i><span>Admin</span></li>
-                                <li><i class="fa fa-calendar"></i><span>August 7, 2018</span></li>
+                                <li><i class="fa fa-calendar"></i><span>{{$new->date}}</span></li>
                             </ul>
                         </div>
-                        <div class="blog-desc">
-                            <a href="#">Business Needs Customers</a>
-                            <p> The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using ‘Content here,...</p>
+                        <div class="blog-desc" style="height: 150px">
+                            <a href="#">{{$new->title_ru}}</a>
+                            <p> {{mb_strimwidth($new->description_uz, 0, 150, '...')}}</p>
                         </div>
-                        <a href="#" class="readon">Read More</a>
+                        <a href="{{route('news.show',['id' => $new->id])}}" class="readon">Read More</a>
                     </div>
                 </div>
+                @endforeach
 
-                <div class="blog-item">
-                    <div class="blog-img">
-                        <img src="images/blog/2.jpg" alt="Blog Image">
-                        <div class="blog-img-content">
-                            <div class="display-table">
-                                <div class="display-table-cell">
-                                    <a class="blog-link" href="#" title="Blog Link">
-                                        <i class="fa fa-link"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="content-wrapper">
-                        <div class="blog-meta">
-                            <ul>
-                                <li><i class="fa fa-user"></i><span>Admin</span></li>
-                                <li><i class="fa fa-calendar"></i><span>August 7, 2018</span></li>
-                            </ul>
-                        </div>
-                        <div class="blog-desc">
-                            <a href="#"> Business Structured </a>
-                            <p> The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using ‘Content here,...</p>
-                        </div>
-                        <a href="#" class="readon">Read More</a>
-                    </div>
-                </div>
-
-                <div class="blog-item">
-                    <div class="blog-img">
-                        <img src="images/blog/3.jpg" alt="Blog Image">
-                        <div class="blog-img-content">
-                            <div class="display-table">
-                                <div class="display-table-cell">
-                                    <a class="blog-link" href="#" title="Blog Link">
-                                        <i class="fa fa-link"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="content-wrapper">
-                        <div class="blog-meta">
-                            <ul>
-                                <li><i class="fa fa-user"></i><span>Admin</span></li>
-                                <li><i class="fa fa-calendar"></i><span>August 7, 2018</span></li>
-                            </ul>
-                        </div>
-                        <div class="blog-desc">
-                            <a href="#">Business Needs Customers</a>
-                            <p> The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using ‘Content here,...</p>
-                        </div>
-                        <a href="#" class="readon">Read More</a>
-                    </div>
-                </div>
-
-                <div class="blog-item">
-                    <div class="blog-img">
-                        <img src="images/blog/4.jpg" alt="Blog Image">
-                        <div class="blog-img-content">
-                            <div class="display-table">
-                                <div class="display-table-cell">
-                                    <a class="blog-link" href="#" title="Blog Link">
-                                        <i class="fa fa-link"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="content-wrapper">
-                        <div class="blog-meta">
-                            <ul>
-                                <li><i class="fa fa-user"></i><span>Admin</span></li>
-                                <li><i class="fa fa-calendar"></i><span>August 7, 2018</span></li>
-                            </ul>
-                        </div>
-                        <div class="blog-desc">
-                            <a href="#"> Business Structured </a>
-                            <p> The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using ‘Content here,...</p>
-                        </div>
-                        <a href="#" class="readon">Read More</a>
-                    </div>
-                </div>
-
-                <div class="blog-item">
-                    <div class="blog-img">
-                        <img src="images/blog/5.jpg" alt="Blog Image">
-                        <div class="blog-img-content">
-                            <div class="display-table">
-                                <div class="display-table-cell">
-                                    <a class="blog-link" href="#" title="Blog Link">
-                                        <i class="fa fa-link"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="content-wrapper">
-                        <div class="blog-meta">
-                            <ul>
-                                <li><i class="fa fa-user"></i><span>Admin</span></li>
-                                <li><i class="fa fa-calendar"></i><span>August 7, 2018</span></li>
-                            </ul>
-                        </div>
-                        <div class="blog-desc">
-                            <a href="#">Small Business Trends</a>
-                            <p> The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using ‘Content here,...</p>
-                        </div>
-                        <a href="#" class="readon">Read More</a>
-                    </div>
-                </div>
-
-                <div class="blog-item">
-                    <div class="blog-img">
-                        <img src="images/blog/6.jpg" alt="Blog Image">
-                        <div class="blog-img-content">
-                            <div class="display-table">
-                                <div class="display-table-cell">
-                                    <a class="blog-link" href="#" title="Blog Link">
-                                        <i class="fa fa-link"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="content-wrapper">
-                        <div class="blog-meta">
-                            <ul>
-                                <li><i class="fa fa-user"></i><span>Admin</span></li>
-                                <li><i class="fa fa-calendar"></i><span>August 7, 2018</span></li>
-                            </ul>
-                        </div>
-                        <div class="blog-desc">
-                            <a href="#">Big Ideas for Business</a>
-                            <p> The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using ‘Content here,...</p>
-                        </div>
-                        <a href="#" class="readon">Read More</a>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
@@ -794,5 +660,4 @@
     <!-- Partner End -->
 </div>
 
-@include('site.footer')
-
+</x-main>

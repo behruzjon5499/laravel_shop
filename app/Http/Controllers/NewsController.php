@@ -2,45 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\About;
-use App\Models\Category;
 use App\Models\News;
-use App\Models\Partners;
-use App\Models\Skills;
 use Illuminate\Http\Request;
 
-class SiteController extends Controller
+class NewsController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $categories = Category::all();
-        $partners = Partners::all();
-        $news = News::all();
-        return view('site.index',[
-            'categories' => $categories,
-            'partners' => $partners,
-            'news' => $news,
-        ]);
-
+        //
     }
-    /**
-     * Display a listing of the resource.
-     */
-    public function about()
-    {
-        $about = About::first();
-        $partners = Partners::all();
-        $skills = Skills::all();
-        return view('site.about',[
-            'about' => $about,
-            'partners' => $partners,
-            'skills' => $skills,
-        ]);
 
-    }
     /**
      * Show the form for creating a new resource.
      */
@@ -62,7 +36,11 @@ class SiteController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $news = News::query()->where(['id'=>$id])->first();
+        return view('news.show',[
+           'news'=>$news
+        ]);
+
     }
 
     /**

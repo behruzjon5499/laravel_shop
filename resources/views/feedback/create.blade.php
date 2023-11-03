@@ -1,6 +1,11 @@
-@include('site.header')
+<x-main>
 
-<!-- Main content Start -->
+    <x-slot:title>
+        Feedback
+    </x-slot:title>
+
+
+    <!-- Main content Start -->
 <div class="main-content">
     <!-- Breadcrumbs Start -->
     <div class="rs-breadcrumbs sec-color">
@@ -125,5 +130,5 @@
     <!-- Map Section End -->
 </div>
 
-@include('site.footer')
+</x-main>
 

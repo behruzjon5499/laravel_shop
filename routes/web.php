@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\FeedbacksController;
+use App\Http\Controllers\NewsController;
 use App\Http\Controllers\SiteController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoriesController;
@@ -22,4 +23,5 @@ Route::resource('feedbacks', FeedbacksController::class);
 
 
 Route::get('site/about', [SiteController::class, 'about'])->name('site.about');
+Route::get('news/show/{id}', [NewsController::class, 'show'])->name('news.show');
 Route::resource('site', SiteController::class);
