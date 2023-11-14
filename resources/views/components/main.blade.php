@@ -110,15 +110,9 @@
                                                                                                      href="#">Home </a>
 
                                 </li>
-                                <!-- End Home -->
-                                <li class="menu-item-has-children"><a href="#">About<i class="fa fa-angle-down"></i></a>
-                                    <ul class="sub-menu">
-                                        <li><a href="about.html">About 1</a></li>
-                                        <li><a href="about2.html">About 2</a></li>
-                                        <li><a href="about3.html">About 3</a></li>
-                                        <li><a href="about-me.html">About Me</a></li>
-                                        <li><a href="about-faqs.html">Faqs</a></li>
-                                    </ul>
+                                <li class="rs-mega-menu current-menu-item menu-item-has-children"><a class="active"
+                                                                                                     href="{{route('categories.index')}}">Categories </a>
+
                                 </li>
                                 <li class="rs-mega-menu menu-item-has-children"><a href="#">Pages<i
                                             class="fa fa-angle-down"></i></a>

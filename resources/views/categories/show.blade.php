@@ -5,7 +5,7 @@
     <!-- Breadcrumbs Start -->
     <div class="rs-breadcrumbs sec-color">
         <div class="breadcrumbs-image">
-            <img src="../images/breadcrumbs/project-slider.jpg" alt="Breadcrumbs Image">
+            <img src="../../images/breadcrumbs/project-slider.jpg" alt="Breadcrumbs Image">
             <div class="breadcrumbs-inner">
                 <div class="container">
                     <div class="breadcrumbs-text">

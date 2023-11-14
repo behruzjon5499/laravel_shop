@@ -18,7 +18,8 @@ use App\Http\Controllers\CategoriesController;
 
 Route::resource('/',  SiteController::class);
 
-Route::resource('categories', CategoriesController::class);
+Route::get('categories/index', [CategoriesController::class,'index'])->name('categories.index');
+Route::get('categories/show/{id}', [CategoriesController::class,'show'])->name('categories.show');
 Route::resource('feedbacks', FeedbacksController::class);
 
 
