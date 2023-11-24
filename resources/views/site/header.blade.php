@@ -120,48 +120,7 @@
                                         <li><a href="about-faqs.html">Faqs</a></li>
                                     </ul>
                                 </li>
-                                <li class="rs-mega-menu menu-item-has-children"><a href="#">Pages<i
-                                            class="fa fa-angle-down"></i></a>
-                                    <ul class="mega-menu">
-                                        <li class="mega-menu-innner">
-                                            <div class="single-magemenu">
-                                                <ul class="sub-menu">
-                                                    <li class="megamenu-title">Projects</li>
-                                                    <li><a href="project.html">Project 2 Column</a></li>
-                                                    <li><a href="project-2.html">Project 3 Column</a></li>
-                                                    <li><a href="project-3.html">Project 4 Column</a></li>
-                                                    <li><a href="project-4.html">Project Full Width</a></li>
-                                                </ul>
-                                            </div>
-                                            <div class="single-magemenu">
-                                                <ul class="sub-menu">
-                                                    <li class="megamenu-title">Team</li>
-                                                    <li><a href="team.html">Team One</a></li>
-                                                    <li><a href="team-2.html">Team Two</a></li>
-                                                    <li><a href="team-3.html">Team Three</a></li>
-                                                    <li><a href="team-4.html">Team Four</a></li>
-                                                </ul>
-                                            </div>
-                                            <div class="single-magemenu">
-                                                <ul class="sub-menu">
-                                                    <li class="megamenu-title">Others</li>
-                                                    <li><a href="project-gallery.html">Project Gallery</a></li>
-                                                    <li><a href="project-slider.html">Project Slider</a></li>
-                                                    <li><a href="project-standard.html">Project Standard</a></li>
-                                                    <li><a href="404.html">404 Page</a></li>
-                                                </ul>
-                                            </div>
-                                        </li>
-                                    </ul> <!-- //.mega-menu -->
-                                </li>
-                                <li class="menu-item-has-children"><a href="#">Services<i class="fa fa-angle-down"></i></a>
-                                    <ul class="sub-menu">
-                                        <li><a href="services.html">Servics 1</a></li>
-                                        <li><a href="services2.html">Servics 2</a></li>
-                                        <li><a href="services3.html">Servics 3</a></li>
-                                        <li><a href="services-single.html">Servics Single</a></li>
-                                    </ul>
-                                </li>
+
                                 <li class="menu-item-has-children"><a href="#">Projects<i class="fa fa-angle-down"></i></a>
                                     <ul class="sub-menu">
                                         <li><a href="project.html">Project 2 Column</a></li>
@@ -211,20 +170,27 @@
                                 <li class="rs-mega-menu  "><a class="active"  href="{{route('site.about')}}">About </a></li>
                                 <li class="menu-item-has-children"><a href="{{route('feedbacks.create')}}">Contact </a> </li>
 
+                                @auth
+                                    <li class="menu-item-has-children"><a href="{{route('feedbacks.create')}}">Logout </a> </li>
+                                  @else
+                                    <li class="menu-item-has-children"><a href="{{route('feedbacks.create')}}">Login </a> </li>
+                                @endauth
+
+
                             </ul>
                         </nav>
                     </div>
-                    <div class="appointment-cart hidden-md">
-                        <ul class="cart">
-                            <li class="search"><i class="fa fa-search"></i></li>
-                            <li><a id="nav-expander" class="nav-expander"><i class="fa fa-bars fa-lg white"></i></a>
-                            </li>
-                        </ul>
-                        <div class="search-bar">
-                            <input type="search" placeholder="Search...">
-                            <button type="button"><i class="fa fa-search"></i></button>
-                        </div>
-                    </div>
+{{--                    <div class="appointment-cart hidden-md">--}}
+{{--                        <ul class="cart">--}}
+{{--                            <li class="search"><i class="fa fa-search"></i></li>--}}
+{{--                            <li><a id="nav-expander" class="nav-expander"><i class="fa fa-bars fa-lg white"></i></a>--}}
+{{--                            </li>--}}
+{{--                        </ul>--}}
+{{--                        <div class="search-bar">--}}
+{{--                            <input type="search" placeholder="Search...">--}}
+{{--                            <button type="button"><i class="fa fa-search"></i></button>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
                 </div>
             </div>
         </div>

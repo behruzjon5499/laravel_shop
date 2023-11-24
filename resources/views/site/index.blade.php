@@ -71,7 +71,7 @@
                                 <img src={{ Storage::disk('public')->url($category->photo)}} alt="" style="height: 300px;">
                             </div>
                             <div class="work-gallery-caption">
-                                <h4><a href="{{route('categories.show',['category'=>$category->id])}}">{{$category->name_uz}}</a></h4>
+                                <h4><a href="{{route('categories.show',['id'=>$category->id])}}">{{$category->name_uz}}</a></h4>
                                 <p>
                                     {{mb_strimwidth($category->description_uz, 0, 150, '...')}}
                                 </p>
