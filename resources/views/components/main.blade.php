@@ -73,7 +73,16 @@
 
                             <li><i class="fa fa-location-arrow"></i>
                                 <p>{{$contact->address}}</p></li>
+                            <li><i class="fa fa-language"></i>
+
+                                @if(App::isLocale('uz'))
+                                <p> <a href="{{ url('change-language/ru') }}">Ru</a> </p>
+                                @else
+                                    <p> <a href="{{ url('change-language/uz') }}">Uz</a> </p>
+                                @endif
+                            </li>
                         </ul>
+
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-12">
@@ -107,11 +116,11 @@
                             <ul class="nav-menu">
                                 <!-- Home -->
                                 <li class="rs-mega-menu current-menu-item menu-item-has-children"><a class="active"
-                                                                                                     href="#">Home </a>
+                                                                                                     href="#">{{__('index.Home')}} </a>
 
                                 </li>
                                 <li class="rs-mega-menu current-menu-item menu-item-has-children"><a class="active"
-                                                                                                     href="{{route('categories.index')}}">Categories </a>
+                                                                                                     href="{{route('categories.index')}}">{{__('index.Categories')}}  </a>
 
                                 </li>
 
@@ -161,12 +170,12 @@
                                         </li>
                                     </ul>
                                 </li>
-                                <li class="rs-mega-menu  "><a class="active"  href="{{route('site.about')}}">About </a></li>
-                                <li class="menu-item-has-children"><a href="{{route('feedbacks.create')}}">Contact </a> </li>
+                                <li class="rs-mega-menu  "><a class="active"  href="{{route('site.about')}}">{{__('index.About')}} </a></li>
+                                <li class="menu-item-has-children"><a href="{{route('feedbacks.create')}}">{{__('index.Contact')}} </a> </li>
                                 @auth
-                                    <li class="menu-item-has-children"><a href="{{route('logout')}}">Logout </a> </li>
+                                    <li class="menu-item-has-children"><a href="{{route('logout')}}">{{__('index.Logout')}} </a> </li>
                                 @else
-                                    <li class="menu-item-has-children"><a href="{{route('login')}}">Login </a> </li>
+                                    <li class="menu-item-has-children"><a href="{{route('login')}}">{{__('index.Login')}} </a> </li>
                                 @endauth
 
                             </ul>

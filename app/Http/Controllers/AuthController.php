@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\UserRegister;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class AuthController extends Controller
 {
@@ -13,20 +15,41 @@ class AuthController extends Controller
     {
         return view('auth.login');
     }
+
+    public function forgot_password()
+    {
+        return view('auth.forgot-password');
+    }
+    public function password_send(Request $request)
+    {
+        $validated = $request->validate([
+            'email' => 'required|email|max:250',
+        ]);
+        $user = User::query()->where('email','=',$validated['email'])->first();
+
+
+        $password = rand(10000,100000);
+         if ($user->email){
+             Mail::to($user)->send(new UserRegister($user,$password));
+         }
+         $user->password = Hash::make($password);
+         $user->save();
+        return redirect('/')->withSuccess('Successfully reset');
+    }
     public function register()
     {
         return view('auth.register');
     }
     public function register_store(Request $request)
     {
+
         $validated = $request->validate([
             'name' => 'required|string|max:250',
             'email' => 'required|email|max:250|unique:users',
-            'password' => 'required|min:8|onfirmed',
-            'password_confirmation' => 'requiredc|same:password'
+            'password' => 'required|min:8|confirmed',
+            'password_confirmation' => 'required|same:password'
         ]);
-
-        dd($validated);
+         $validated['password']  =  Hash::make($request->password);
          $user  =  User::create($validated);
 
         auth()->login($user);

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\Feedback;
 use App\Models\Feedbacks;
+use App\Models\User;
 use App\Rules\PhoneNumber;
 use Illuminate\Http\Request;
 
@@ -41,8 +43,9 @@ class FeedbacksController extends Controller
 //        $model->name = $data['name'];
 //        $model->phone = $data['phone'];
 //        $model->message = $data['message'];
-
+          $user = User::query()->where(['id'=>1])->first();
         if ($model->save()) {
+            Feedback::dispatch($user,$model);
             return back()->with('message', 'Murojaatingiz muvaffaqiyatli yetkazildi');
         }
 
