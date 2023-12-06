@@ -8,6 +8,7 @@ use App\Models\News;
 use App\Models\Partners;
 use App\Models\Skills;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class SiteController extends Controller
 {
@@ -16,9 +17,15 @@ class SiteController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
-        $partners = Partners::all();
-        $news = News::all();
+        $categories = Cache::remember('categories_list',now()->addSeconds(300),function (){
+            return Category::latest()->get();
+        });
+        $partners = Cache::remember('partners_list',now()->addSeconds(300),function (){
+            return Partners::latest()->get();
+        });
+        $news = Cache::remember('news_list',now()->addSeconds(300),function (){
+            return News::latest()->get();
+        });
         return view('site.index',[
             'categories' => $categories,
             'partners' => $partners,
