@@ -177,6 +177,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\FilamentServiceProvider::class,
         GoogleMaps\ServiceProvider\GoogleMapsServiceProvider::class,
+        Barryvdh\Debugbar\ServiceProvider::class,
     ],
 
     /*
@@ -232,6 +233,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'GoogleMaps' => GoogleMaps\Facade\GoogleMapsFacade::class,
+        'Debugbar' => Barryvdh\Debugbar\Facades\Debugbar::class,
     ],
 
 ];
