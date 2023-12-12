@@ -59,6 +59,7 @@ Route::post('password-send', [AuthController::class, 'password_send'])->name('pa
 Route::get('site/about', [SiteController::class, 'about'])->name('site.about');
 Route::get('news/show/{id}', [NewsController::class, 'show'])->name('news.show');
 Route::resource('site', SiteController::class);
+Route::get('language/{locale}',[\App\Http\Controllers\LanguageController::class,'change_locale'])->name('change_locale');
 
 
 

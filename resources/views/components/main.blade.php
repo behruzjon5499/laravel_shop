@@ -74,12 +74,12 @@
                             <li><i class="fa fa-location-arrow"></i>
                                 <p>{{$contact->address}}</p></li>
                             <li><i class="fa fa-language"></i>
+                                <p> <a href="{{ route('change_locale',['locale' => 'uz']) }}">Uz</a> </p>
 
-                                @if(App::isLocale('uz'))
-                                <p> <a href="{{ url('change-language/ru') }}">Ru</a> </p>
-                                @else
-                                    <p> <a href="{{ url('change-language/uz') }}">Uz</a> </p>
-                                @endif
+                            </li>
+                            <li><i class="fa fa-language"></i>
+                                <p> <a href="{{ route('change_locale',['locale' => 'ru']) }}">Ru</a> </p>
+
                             </li>
                         </ul>
 
