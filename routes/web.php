@@ -48,7 +48,9 @@ Route::get('categories/show/{id}', [CategoriesController::class, 'show'])->name(
 
 Route::get('login', [AuthController::class, 'login'])->name('login');
 Route::get('google', [AuthController::class, 'loginGoogle'])->name('loginWithGoogle');
+Route::get('facebook', [AuthController::class, 'loginFacebook'])->name('loginWithFacebook');
 Route::any('callback', [AuthController::class, 'callbackFromGoogle'])->name('callback');
+Route::any('callback-facebook', [AuthController::class, 'callbackFromFacebook'])->name('callbackFacebook');
 Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('register', [AuthController::class, 'register'])->name('register');
 Route::post('authenticate', [AuthController::class, 'authenticate'])->name('authenticate');

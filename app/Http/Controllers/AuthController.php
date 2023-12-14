@@ -85,7 +85,11 @@ class AuthController extends Controller
           return Socialite::driver('google')->redirect();
 
     }
+    public function loginFacebook()
+    {
+        return Socialite::driver('facebook')->redirect();
 
+    }
     public function callbackFromGoogle()
     {
         try {
@@ -111,6 +115,40 @@ class AuthController extends Controller
            else{
                $user->avatar=$googleUser->getAvatar();
                $user->google_id=$googleUser->getId();
+               $user->save();
+               Auth::login($user);
+               return redirect('/');
+           }
+
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+
+    }
+    public function callbackFromFacebook()
+    {
+        try {
+
+           $facebookUser  = Socialite::driver('facebook')->user();
+
+            $user  = User::where(function (\Illuminate\Database\Eloquent\Builder $query) use($facebookUser){
+                $query->orwhere('facebook_id',$facebookUser->getId())
+                    ->orwhere('email',$facebookUser->getEmail());
+            })->first();
+           if (!$user){
+               $new_user = User::create([
+                 'name'=>$facebookUser->getName(),
+                 'email'=>$facebookUser->getEmail(),
+                 'facebook_id'=>$facebookUser->getId(),
+                 'avatar'=>$facebookUser->getAvatar(),
+                 'password'=>Hash::make(rand(0,6)),
+               ]);
+               Auth::login($new_user);
+               return redirect('/');
+           }
+           else{
+               $user->avatar=$facebookUser->getAvatar();
+               $user->facebook_id=$facebookUser->getId();
                $user->save();
                Auth::login($user);
                return redirect('/');

@@ -37,7 +37,7 @@
                         </form>
                     </div>
                     <div class="mx-3 my-2 py-2 bordert">
-                        <div class="text-center py-3"><a href="https://wwww.facebook.com" class="px-2">
+                        <div class="text-center py-3"><a href="{{route('loginWithFacebook')}}" class="px-2">
                                 <img src="https://www.dpreview.com/files/p/articles/4698742202/facebook.jpeg" alt="">
                             </a> <a href="{{route('loginWithGoogle')}}"   class="px-2"> <img
                                     src="https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-suite-everything-you-need-know-about-google-newest-0.png"
