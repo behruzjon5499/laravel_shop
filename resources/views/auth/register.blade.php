@@ -41,9 +41,7 @@
                                 <img src="https://www.dpreview.com/files/p/articles/4698742202/facebook.jpeg" alt="">
                             </a> <a href="{{route('loginWithGoogle')}}"   class="px-2"> <img
                                     src="https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-suite-everything-you-need-know-about-google-newest-0.png"
-                                    alt=""> </a> <a href="https://www.github.com"  class="px-2"> <img
-                                    src="https://www.freepnglogos.com/uploads/512x512-logo-png/512x512-logo-github-icon-35.png"
-                                    alt=""> </a></div>
+                                    alt=""> </a>  </div>
                     </div>
                 </div>
             </div>
