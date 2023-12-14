@@ -47,6 +47,8 @@ Route::get('categories/index', [CategoriesController::class, 'index'])->name('ca
 Route::get('categories/show/{id}', [CategoriesController::class, 'show'])->name('categories.show');
 
 Route::get('login', [AuthController::class, 'login'])->name('login');
+Route::get('google', [AuthController::class, 'loginGoogle'])->name('loginWithGoogle');
+Route::any('callback', [AuthController::class, 'callbackFromGoogle'])->name('callback');
 Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('register', [AuthController::class, 'register'])->name('register');
 Route::post('authenticate', [AuthController::class, 'authenticate'])->name('authenticate');
