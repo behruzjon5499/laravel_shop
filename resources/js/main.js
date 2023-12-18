@@ -31,7 +31,7 @@
         });
 
     });
-	
+
     //window load
 	win.on( 'load', function() {
 		//rs menu
@@ -46,16 +46,16 @@
         $(".loading-center").on('click', function() {
         $(".object").fadeOut(500);
         });
-               
+
 	})
- 
-    // collapse hidden  
+
+    // collapse hidden
      var navMain = $(".navbar-collapse");
      navMain.on("click", "a:not([data-toggle])", null, function () {
          navMain.collapse('hide');
-     });  
+     });
 
-    // slider init 
+    // slider init
     $('#nivoSlider').nivoSlider({
         effect: 'random',
         slices: 15,
@@ -70,14 +70,14 @@
         manualAdvance: true
     });
 
-    // video 
+    // video
     if ($('.player').length) {
         $(".player").YTPlayer();
     }
 
     // wow init
     new WOW().init();
-    
+
     // Menu active
     $('.nav-menu li').on('click', function(event) {
         $(this).siblings('.active').removeClass('active');
@@ -102,8 +102,8 @@
                 }
             });
         });
-    }   
-        
+    }
+
     // project Filter
     if ($('.gridFilter button').length) {
         var projectfiler = $('.gridFilter button');
@@ -147,7 +147,7 @@
         }
     });
 
-    //Videos popup jQuery 
+    //Videos popup jQuery
     $('.popup-videos').magnificPopup({
         disableOn: 10,
         type: 'iframe',
@@ -155,8 +155,8 @@
         removalDelay: 160,
         preloader: false,
         fixedContentPos: false
-    }); 
-    
+    });
+
     /*-------------------------------------
     OwlCarousel
     -------------------------------------*/
@@ -272,19 +272,19 @@
         }, ]
     });
 
-     
-		
+
+
     // Counter Up
-    if ($('.rs-counter').length) {  
+    if ($('.rs-counter').length) {
         $('.rs-counter').counterUp({
             delay: 20,
             time: 1500
         });
     }
-    
-    
-    // scrollTop init	
-    var totop = $('#scrollUp');    
+
+
+    // scrollTop init
+    var totop = $('#scrollUp');
     win.on('scroll', function() {
         if (win.scrollTop() > 150) {
             totop.fadeIn();
@@ -327,21 +327,21 @@
         }
         google.maps.event.addDomListener(window, "load", initialize);
     }
-	
+
 	/*----------------------------
     single-productjs active
     ------------------------------ */
-    $('.single-product-image').slick({
+    $('.single-products-image').slick({
         slidesToShow: 1,
         slidesToScroll: 1,
         arrows: false,
         fade: true,
-        asNavFor: '.single-product-nav'
+        asNavFor: '.single-products-nav'
     });
 
-    $('.single-product-nav').slick({
+    $('.single-products-nav').slick({
         slidesToShow: 4,
-        asNavFor: '.single-product-image',
+        asNavFor: '.single-products-image',
         dots: false,
         focusOnSelect: true,
         centerMode:false,
@@ -358,7 +358,7 @@
                 slidesToShow: 2
               }
             }
-          ] 
+          ]
     });
 
     //canvas menu
@@ -376,7 +376,7 @@
             $('body').removeClass('nav-expanded');
         });
     }
-    
+
     $('.card .card-title button').on('click', function() {
         $('.card-header').removeClass("active");
         $(this).parents('.card').children('.card-header').addClass("active");

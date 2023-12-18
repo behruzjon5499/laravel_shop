@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\FeedbacksController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\SiteController;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Request;
@@ -64,6 +65,16 @@ Route::get('site/about', [SiteController::class, 'about'])->name('site.about');
 Route::get('news/show/{id}', [NewsController::class, 'show'])->name('news.show');
 Route::resource('site', SiteController::class);
 Route::get('language/{locale}',[\App\Http\Controllers\LanguageController::class,'change_locale'])->name('change_locale');
+
+
+Route::middleware('auth')->group(function () {
+ Route::resource('products',ProductsController::class);
+// Route::get('products/create',[ProductsController::class,'create'])->name('products.create');
+ Route::post('products/store',[ProductsController::class,'store'])->name('products.store');
+// Route::post('products/show',[ProductsController::class,'show'])->name('products.show');
+// Route::post('products/update',[ProductsController::class,'update'])->name('products.update');
+// Route::post('products/edit',[ProductsController::class,'edit'])->name('products.edit');
+});
 
 
 

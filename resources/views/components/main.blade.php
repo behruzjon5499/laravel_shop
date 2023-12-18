@@ -40,8 +40,7 @@
     <!-- responsive css -->
     <link rel="stylesheet" type="text/css" href="../../css/responsive.css">
 
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <script src="../../js/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -55,6 +54,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
             integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
 </head>
 <body class="defult-home">
 <header id="rs-header" class="rs-header">
@@ -124,22 +129,7 @@
 
                                 </li>
 
-                                <li class="menu-item-has-children"><a href="#">Projects<i class="fa fa-angle-down"></i></a>
-                                    <ul class="sub-menu">
-                                        <li><a href="project.html">Project 2 Column</a></li>
-                                        <li><a href="project-2.html">Project 3 Column</a></li>
-                                        <li><a href="project-3.html">Project 4 Column</a></li>
-                                        <li><a href="project-4.html">Project Full Width</a></li>
-                                        <li class="menu-item-has-children"><a href="#">Project Single Style<i
-                                                    class="fa fa-angle-down"></i></a>
-                                            <ul class="sub-menu">
-                                                <li><a href="project-gallery.html">Project Gallery</a></li>
-                                                <li><a href="project-slider.html">Project Slider</a></li>
-                                                <li><a href="project-standard.html">Project Standard</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
+                                <li class="rs-mega-menu  "><a class="active"  href="{{route('products.index')}}">{{__('Products')}} </a></li>
                                 <li class="menu-item-has-children"><a href="shop.html">Shop<i
                                             class="fa fa-angle-down"></i></a>
                                     <ul class="sub-menu">
@@ -286,7 +276,7 @@
                     <div class="recent-post-widget">
                         <div class="post-item mb-30">
                             <div class="post-image">
-                                <img src="images/blog/1.jpg" alt="post image">
+                                <img src="/images/blog/1.jpg" alt="post image">
                             </div>
                             <div class="post-desc">
                                 <a href="#">Business Needs Customers</a>
@@ -296,7 +286,7 @@
 
                         <div class="post-item mb-30">
                             <div class="post-image">
-                                <img src="images/blog/2.jpg" alt="post image">
+                                <img src="/images/blog/2.jpg" alt="post image">
                             </div>
                             <div class="post-desc">
                                 <a href="#"> Business Structured </a>
@@ -306,7 +296,7 @@
 
                         <div class="post-item">
                             <div class="post-image">
-                                <img src="images/blog/3.jpg" alt="post image">
+                                <img src="/images/blog/3.jpg" alt="post image">
                             </div>
                             <div class="post-desc">
                                 <a href="#"> Small Business Trends </a>
@@ -360,7 +350,6 @@
 <!-- modernizr js -->
 <script src="../../js/modernizr-2.8.3.min.js"></script>
 <!-- jquery latest version -->
-<script src="../../js/jquery.min.js"></script>
 <!-- bootstrap js -->
 <script src="../../js/bootstrap.min.js"></script>
 <!-- Menu js -->
@@ -396,5 +385,6 @@
 <script src="../../js/main.js"></script>
 <script src="../../js/lara_main.js"></script>
 <script src="../../js/input-mask.js"></script>
+<script src="../../js/custom.js"></script>
 </body>
 </html>
