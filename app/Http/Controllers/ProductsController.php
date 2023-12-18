@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\File;
+use App\Models\ProductData;
 use App\Models\Products;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -52,6 +53,7 @@ class ProductsController extends Controller
             'date' => 'required',
             'price' => 'required',
             'type' => 'required',
+            'items' => 'array',
             'photo' => [
                 'required',
             ],
@@ -72,9 +74,18 @@ class ProductsController extends Controller
                 'file' =>$response,
                 'host' =>1,
             ]);
-
         }
 
+        if (isset($data['items'])){
+            foreach ($data['items'] as $item){
+                ProductData::create([
+                    'name' =>$item['name'],
+                    'value' =>$item['value'],
+                    'product_id' =>$model->id,
+                ]);
+            }
+
+        }
         if ($model->save()) {
             return back()->with('message', 'Muvaffaqiyatli yaratildi');
         }
@@ -95,7 +106,9 @@ class ProductsController extends Controller
      */
     public function edit(Products $products)
     {
-        //
+            return view('products.edit',[
+                'product'=>$products
+            ]);
     }
 
     /**
@@ -103,7 +116,7 @@ class ProductsController extends Controller
      */
     public function update(Request $request, Products $products)
     {
-        //
+
     }
 
     /**

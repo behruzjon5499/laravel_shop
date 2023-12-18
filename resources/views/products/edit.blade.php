@@ -1,13 +1,9 @@
 <x-main>
 
     <x-slot:title>
-        Product create
+        Product edit
     </x-slot:title>
     <style>
-        .file {
-            visibility: hidden;
-            position: absolute;
-        }
         body {
             padding: 10px;
 
@@ -60,9 +56,9 @@
                     @endif
 
 
-                    <form method="post" action="{{route('products.store')}}"  enctype="multipart/form-data">
+                    <form method="post" action="{{route('products.update')}}"  enctype="multipart/form-data">
                         <!-- 2 column grid layout with text inputs for the first and last names -->
-                                 @csrf
+                        @csrf
                         <div id="exTab1" class="container">
                             <ul class="nav nav-pills">
                                 <li class="active">
@@ -81,7 +77,7 @@
                                     <div class="col">
                                         <div data-mdb-input-init class="form-outline">
                                             <label class="form-label" for="name_uz">First name</label>
-                                            <input placeholder="Name Uz" name="name_uz" type="text" id="name_uz"
+                                            <input placeholder="Name Uz" name="name_uz" value="{{$product->name_uz}}" type="text" id="name_uz"
                                                    class="form-control"/>
 
                                         </div>
@@ -89,7 +85,7 @@
                                     <div data-mdb-input-init class="form-outline mb-4">
                                         <label class="form-label" for="description_uz">Additional information</label>
                                         <textarea placeholder="Description Uz" name="description_uz"
-                                                  class="form-control" id="description_uz" rows="4"></textarea>
+                                                  class="form-control" id="description_uz" value="{{$product->description_uz}}" rows="4"></textarea>
 
                                     </div>
 
@@ -98,7 +94,7 @@
                                     <div class="col">
                                         <div data-mdb-input-init class="form-outline">
                                             <label class="form-label" for="name_ru">First name</label>
-                                            <input placeholder="Name Ru" type="text" name="name_ru" id="name_ru"
+                                            <input placeholder="Name Ru" type="text" value="{{$product->name_ru}}" name="name_ru" id="name_ru"
                                                    class="form-control"/>
 
                                         </div>
@@ -106,7 +102,7 @@
                                     <div data-mdb-input-init class="form-outline mb-4">
                                         <label class="form-label" for="description_ru">Additional information</label>
                                         <textarea placeholder="Description Ru" name="description_ru"
-                                                  class="form-control" id="description_ru" rows="4"></textarea>
+                                                  class="form-control" id="description_ru"  value="{{$product->description_ru}} "rows="4"></textarea>
 
                                     </div>
                                 </div>
@@ -114,7 +110,7 @@
                                     <div class="col">
                                         <div data-mdb-input-init class="form-outline">
                                             <label class="form-label" for="name_en">First name</label>
-                                            <input placeholder="Name En" type="text" name="name_en" id="name_en"
+                                            <input placeholder="Name En" type="text" name="name_en"  value="{{$product->name_en}}" id="name_en"
                                                    class="form-control"/>
 
                                         </div>
@@ -122,7 +118,7 @@
                                     <div data-mdb-input-init class="form-outline mb-4">
                                         <label class="form-label" for="title_en">Additional information</label>
                                         <textarea placeholder="Description En" name="description_en"
-                                                  class="form-control" id="title_en" rows="4"></textarea>
+                                                  class="form-control" id="title_en"  value="{{$product->description_en}}" rows="4"></textarea>
 
                                     </div>
                                 </div>
@@ -134,7 +130,7 @@
                             <div class="col">
                                 <div data-mdb-input-init class="form-outline">
                                     <label class="form-label" for="price">{{__('Price')}}</label>
-                                    <input type="text" name="price" id="price" class="form-control"/>
+                                    <input type="text" name="price"  value="{{$product->price}}" id="price" class="form-control"/>
 
                                 </div>
                             </div>
@@ -143,7 +139,7 @@
 
                                     <div class="container">
                                         <label class="form-label" for="date">{{__('Date')}}</label>
-                                        <input type="date" id="date" name="date" class="form-control date"
+                                        <input type="date" id="date" name="date" class="form-control date"  value="{{$product->date}}"
                                                placeholder="Pick the multiple dates">
                                     </div>
 
@@ -161,7 +157,7 @@
                                     <select name="category_id" class="form-control" id="category_id">
                                         <option value="">{{__('Select')}}</option>
                                         @foreach($categories as $category)
-                                            <option value="{{$category->id}}">{{$category->name_uz}}</option>
+                                            <option value="{{$category->id}}" <?= $product->category_id == $category->id ? 'selected' :"" ?> > >{{$category->name_uz}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -169,12 +165,12 @@
                             <div class="col">
                                 <div class="form-group">
                                     <label for="type">{{__('Type')}}</label>
-                                    <select name="type" class="form-control" id="type">
+                                    <select name="type" class="form-control" id="type"  >
                                         <option value="">{{__('Select')}}</option>
 
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
+                                        <option value="1" <?= $product->type == 1 ? 'selected' :"" ?>>1</option>
+                                        <option value="2" <?= $product->type == 2 ? 'selected' :"" ?>>2</option>
+                                        <option value="3" <?= $product->type ==3 ? 'selected' :"" ?>>3</option>
 
                                     </select>
                                 </div>
@@ -182,45 +178,16 @@
                         </div>
                         <div class="row mb-4">
                             <div class="col">
-                                <div class="ml-2 col-sm-6">
-                                    <div id="msg"></div>
-                                    <input type="file" name="photo" class="file" accept="image/*">
-                                    <div class="input-group my-3">
-                                        <input type="text" class="form-control" disabled placeholder="Upload File" id="file">
-                                        <div class="input-group-append">
-                                            <button type="button" class="browse btn btn-primary">Browse...</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="ml-2 col-sm-6">
-                                    <img src="https://placehold.it/80x80" id="preview" class="img-thumbnail">
+                                <div class="form-group">
+                                    <label class="form-label" for="photo">{{__('File')}}</label>
+                                    <input type="file" name="photo" class="form-control" id="photo"/>
+
                                 </div>
                             </div>
-                            <div class="col">
-
-                            </div>
-
+                            <div class="col"></div>
                         </div>
-
-                        <div class="row mb-4">
-                            <div class="col">
-                        <table class="table table-bordered" id="dynamicAddRemove">
-                            <tr>
-                                <th>Subject</th>
-                                <th>Action</th>
-                            </tr>
-                            <tr>
-                                <td><input type="text" name="items[0][name]" placeholder="Enter name" class="form-control" />
-                                </td>
-                                <td><input type="text" name="items[0][value]" placeholder="Enter value" class="form-control" />
-                                </td>
-                                <td><button type="button" name="add" id="dynamic-ar" class="btn btn-outline-primary">Add Subject</button></td>
-                            </tr>
-                        </table>
-                            </div>
-                        </div>
-
-                            <button data-mdb-ripple-init type="submit"
+                        <!-- Submit button -->
+                        <button data-mdb-ripple-init type="submit"
                                 class="btn btn-primary btn-block mb-4">{{__('Submit')}}</button>
                     </form>
                 </div>
@@ -229,37 +196,4 @@
     </div>
 
 </x-main>
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
-<script type="text/javascript">
-    var i = 0;
-    $("#dynamic-ar").click(function () {
-        ++i;
-        $("#dynamicAddRemove").append('<tr><td><input type="text" name="items[' + i +
-            '][name]" placeholder="Enter name" class="form-control" /></td><td><input type="text" name="items[' + i +'][value]" placeholder="Enter value" class="form-control" /> </td><td> <button type="button" class="btn btn-outline-danger remove-input-field">Delete</button></td></tr>'
-        );
-    });
-    $(document).on('click', '.remove-input-field', function () {
-        $(this).parents('tr').remove();
-    });
-</script>
-<script type="text/javascript">
-    $(document).on("click", ".browse", function() {
-        alert('131313');
-        var file = $(this).parents().find(".file");
-        file.trigger("click");
-    });
-    $('input[type="file"]').change(function(e) {
-        var fileName = e.target.files[0].name;
-        $("#file").val(fileName);
 
-        var reader = new FileReader();
-        reader.onload = function(e) {
-            // get loaded data and render thumbnail.
-            document.getElementById("preview").src = e.target.result;
-        };
-        // read the image file as a data URL.
-        reader.readAsDataURL(this.files[0]);
-    });
-
-</script>

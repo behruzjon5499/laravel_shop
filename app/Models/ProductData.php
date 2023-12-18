@@ -15,7 +15,9 @@ class ProductData extends Model
    //
   ];
     protected $fillable = [
-    //
+    'name',
+    'value',
+    'product_id',
     ];
     public function post()
     {
