@@ -13,12 +13,66 @@
                 <div class="col-lg-7 col-md-12 mb-md-30">
                     <div class="project-desc">
                         <h3>{{$products->name_ru}}</h3>
-                        <p>Their separate existence is a myth. For science, music, sport, etc, Europe uses the same vocabulary. The languages only differ in their grammar, their pronunciation and their most common words. Everyone realizes why a new common language would be desirable: one could refuse to pay expensive translators.</p>
 
-                        <p>To achieve this, it would be necessary to have uniform grammar, pronunciation and more common words. If several languages coalesce, the grammar of the resulting language is more simple and regular than that of the individual languages. The new common language will be more simple and regular than the existing European languages. It will be as simple as Occidental; in fact, it will be Occidental. To an English person, it will seem like simplified English, as a skeptical Cambridge friend of mine told me what Occidental is.The European languages are members of the same family. The languages only differ in their grammar, their pronunciation and their most common words. Everyone realizes why a new common language would be desirable: one could refuse to pay expensive translators. To achieve this, it would be necessary to have uniform grammar, pronunciation and more common words. If several languages coalesce, the grammar of the resulting language is more simple and regular than that of the individual languages. The new common language will be more simple and regular than the existing European languages.</p>
 
-                        <p class="">It will be as simple as Occidental; in fact, it will be Occidental. To an English person, it will seem like simplified English, as a skeptical Cambridge friend of mine told me what Occidental is. The European languages are members of the same family. Their separate existence is a myth. For science, music, sport, etc, Europe uses the same vocabulary. The languages only differ in their grammar, their pronunciation and their most common words. Everyone realizes why a new common language would be desirable: one could refuse to pay expensive translators. To achieve this, it would be necessary to have uniform grammar, pronunciation and more common words. If several languages coalesce, the grammar of the resulting language is more simple and regular than that of the individual languages.</p>
-                    </div>
+                        <!-- Services Start -->
+                        <section id="rs-services-2" class="rs-services services-carousel seo-service sec-spacer">
+                            <div class="container">
+
+                                <div class="clfeatures">
+                                    <div class="row common-height clearfix">
+                                        <div class="col-lg-7 col-md-12 nopadding-sm mb-md-30 clearfix">
+                                            <div class="vertical-middle">
+                                                <div class="col-padding clearfix">
+                                                    <div id="item-thumb" class="item-thumb">
+
+
+                                                        <div class="owl-dot active">
+                                                            <img src="/images/service/seo/9.jpg" alt="" >
+                                                            <h5 class="overlay-feature-title">
+                                                                <a href="#">
+                                                                    Web Analytics
+                                                                </a>
+                                                            </h5>
+                                                        </div>
+
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-5 col-md-12 nopadding">
+                                            <div id="feature-left" class="menu-carousel owl-carousel image-carousel feature-left custom-js owl-loaded" data-animate-in="fadeIn" data-margin="0" data-nav="false" data-pagi="false" data-items="1">
+
+
+                                                <div class="cl-ft-item">
+                                                    <a href="#">
+                                                        <img src="/images/service/seo/9.jpg" alt="" >
+                                                    </a>
+                                                    <div class="feature-content clearfix">
+                                                        <div class="heading-block">
+                                                            <h4 class="feature-title">
+                                                                <a href="#">
+                                                                    Web Analytics
+                                                                </a>
+                                                            </h4>
+                                                            <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis voluptatum del eniti atque corrupti quos dolores...</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <!-- Services End -->
+
+                          </div>
                 </div>
                 <div class="col-lg-5 col-md-12">
                     <div class="project-img">
