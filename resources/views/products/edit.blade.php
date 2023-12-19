@@ -56,8 +56,8 @@
                     @endif
 
 
-                    <form method="post" action="{{route('products.update')}}"  enctype="multipart/form-data">
-                        <!-- 2 column grid layout with text inputs for the first and last names -->
+                    <form method="post" action={{route('products.update',['product'=>$product->id])}} enctype="multipart/form-data">
+                       @method('put')
                         @csrf
                         <div id="exTab1" class="container">
                             <ul class="nav nav-pills">
@@ -85,7 +85,7 @@
                                     <div data-mdb-input-init class="form-outline mb-4">
                                         <label class="form-label" for="description_uz">Additional information</label>
                                         <textarea placeholder="Description Uz" name="description_uz"
-                                                  class="form-control" id="description_uz" value="{{$product->description_uz}}" rows="4"></textarea>
+                                                  class="form-control" id="description_uz"   rows="4">{{$product->description_uz}}</textarea>
 
                                     </div>
 
@@ -102,7 +102,7 @@
                                     <div data-mdb-input-init class="form-outline mb-4">
                                         <label class="form-label" for="description_ru">Additional information</label>
                                         <textarea placeholder="Description Ru" name="description_ru"
-                                                  class="form-control" id="description_ru"  value="{{$product->description_ru}} "rows="4"></textarea>
+                                                  class="form-control" id="description_ru"    rows="4">{{$product->description_ru}}</textarea>
 
                                     </div>
                                 </div>
@@ -118,7 +118,7 @@
                                     <div data-mdb-input-init class="form-outline mb-4">
                                         <label class="form-label" for="title_en">Additional information</label>
                                         <textarea placeholder="Description En" name="description_en"
-                                                  class="form-control" id="title_en"  value="{{$product->description_en}}" rows="4"></textarea>
+                                                  class="form-control" id="title_en"   rows="4">{{$product->description_en}}</textarea>
 
                                     </div>
                                 </div>
@@ -157,7 +157,7 @@
                                     <select name="category_id" class="form-control" id="category_id">
                                         <option value="">{{__('Select')}}</option>
                                         @foreach($categories as $category)
-                                            <option value="{{$category->id}}" <?= $product->category_id == $category->id ? 'selected' :"" ?> > >{{$category->name_uz}}</option>
+                                            <option value="{{$category->id}}" <?= $product->category_id == $category->id ? 'selected' :"" ?> > {{$category->name_uz}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -178,13 +178,53 @@
                         </div>
                         <div class="row mb-4">
                             <div class="col">
-                                <div class="form-group">
-                                    <label class="form-label" for="photo">{{__('File')}}</label>
-                                    <input type="file" name="photo" class="form-control" id="photo"/>
-
+                                <div class="ml-2 col-sm-6">
+                                    <div id="msg"></div>
+                                    <input type="file" name="photo" class="file" accept="image/*">
+                                    <div class="input-group my-3">
+                                        <input type="text" class="form-control" disabled placeholder="Upload File" id="file">
+                                        <div class="input-group-append">
+                                            <button type="button" class="browse btn btn-primary">{{__('File')}}</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="ml-2 col-sm-6">
+                                    <img src="{{Storage::url($product->photo)}}" id="preview"  class="img-thumbnail">
                                 </div>
                             </div>
-                            <div class="col"></div>
+                            <div class="col">
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="row mb-4">
+                            <div class="col">
+                                <table class="table table-bordered" id="dynamicAddRemove">
+                                    <tr>
+                                        <th>{{__('Name')}}</th>
+                                        <th>{{__('Value')}}</th>
+                                    </tr>
+
+                                    @if($product->data)
+                                @foreach($product->data as $key=>$data)
+                                    <tr>
+                                        <td><input type="text" name="items[{{$key}}][name]" value="{{$data->name}}" placeholder="Name" class="form-control" />
+                                        </td>
+                                        <td><input type="text" name="items[{{$key}}][value]" value="{{$data->value}}" placeholder="Value" class="form-control" />
+                                        </td>
+                                       @if($key ==0 )  <td><button type="button" name="add" id="dynamic-ar" class="btn btn-outline-primary">
+                                                {{__('Add data')}}</button></td>
+                                        @else
+                                            <td><button type="button" class="btn btn-outline-danger remove-input-field">
+                                                {{__('Delete')}}</button></td>
+                                        @endif
+                                    </tr>
+                                        @endforeach
+                                    @endif
+                                </table>
+                            </div>
                         </div>
                         <!-- Submit button -->
                         <button data-mdb-ripple-init type="submit"
@@ -196,4 +236,38 @@
     </div>
 
 </x-main>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript">
+    var i = 0;
+    $("#dynamic-ar").click(function () {
+        ++i;
+        $("#dynamicAddRemove").append('<tr><td><input type="text" name="items[' + i +
+            '][name]" placeholder="Enter name" class="form-control" /></td><td><input type="text" name="items[' + i +'][value]" placeholder="Enter value" class="form-control" /> </td><td> <button type="button" class="btn btn-outline-danger remove-input-field">Delete</button></td></tr>'
+        );
+    });
+    $(document).on('click', '.remove-input-field', function () {
+        $(this).parents('tr').remove();
+    });
+</script>
+<script type="text/javascript">
+    $(document).on("click", ".browse", function() {
+        alert('131313');
+        var file = $(this).parents().find(".file");
+        file.trigger("click");
+    });
+    $('input[type="file"]').change(function(e) {
+        var fileName = e.target.files[0].name;
+        $("#file").val(fileName);
+
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            // get loaded data and render thumbnail.
+            document.getElementById("preview").src = e.target.result;
+        };
+        // read the image file as a data URL.
+        reader.readAsDataURL(this.files[0]);
+    });
+
+</script>
 

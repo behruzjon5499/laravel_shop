@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class ProductData extends Model
 {
     use HasFactory;
-    use SoftDeletes;
    protected $primaryKey = 'id';
 
     protected $attributes = [
@@ -21,6 +20,6 @@ class ProductData extends Model
     ];
     public function post()
     {
-        return $this->belongsTo(Products::class);
+        return $this->belongsTo(Products::class,'id','product_id');
     }
 }

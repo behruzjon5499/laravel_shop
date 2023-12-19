@@ -188,7 +188,7 @@
                                     <div class="input-group my-3">
                                         <input type="text" class="form-control" disabled placeholder="Upload File" id="file">
                                         <div class="input-group-append">
-                                            <button type="button" class="browse btn btn-primary">Browse...</button>
+                                            <button type="button" class="browse btn btn-primary">{{__('File')}}</button>
                                         </div>
                                     </div>
                                 </div>
@@ -206,15 +206,16 @@
                             <div class="col">
                         <table class="table table-bordered" id="dynamicAddRemove">
                             <tr>
-                                <th>Subject</th>
-                                <th>Action</th>
+                                <th>{{__('Name')}}</th>
+                                <th>{{__('Value')}}</th>
                             </tr>
                             <tr>
-                                <td><input type="text" name="items[0][name]" placeholder="Enter name" class="form-control" />
+                                <td><input type="text" name="items[0][name]" placeholder="Name" class="form-control" />
                                 </td>
-                                <td><input type="text" name="items[0][value]" placeholder="Enter value" class="form-control" />
+                                <td><input type="text" name="items[0][value]" placeholder="Value" class="form-control" />
                                 </td>
-                                <td><button type="button" name="add" id="dynamic-ar" class="btn btn-outline-primary">Add Subject</button></td>
+                                <td><button type="button" name="add" id="dynamic-ar" class="btn btn-outline-primary">
+                                    {{__('Add data')}}</button></td>
                             </tr>
                         </table>
                             </div>

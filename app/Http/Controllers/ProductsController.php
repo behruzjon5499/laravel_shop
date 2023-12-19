@@ -94,28 +94,78 @@ class ProductsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Products $products)
+    public function show(Products $product)
     {
          return view('products.show',[
-             'products' =>$products
+             'products' =>$product
          ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Products $products)
+    public function edit(Products $product)
     {
+        $categories = Category::all();
             return view('products.edit',[
-                'product'=>$products
+                'product'=>$product,
+                'categories'=>$categories
             ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Products $products)
+    public function update(Request $request, Products $product)
     {
+
+        $data = $request->validate([
+            'name_ru' => 'required',
+            'name_uz' => 'required',
+            'name_en' => 'required',
+            'description_en' => 'required',
+            'description_uz' => 'required',
+            'description_ru' => 'required',
+            'category_id' => 'required',
+            'date' => 'required',
+            'price' => 'required',
+            'type' => 'required',
+            'items' => 'array',
+        ]);
+        $data['owner_id'] = auth()->id();
+        if ($request->hasFile('photo')){
+            if (isset($product->photo)){
+                Storage::delete($product->photo);
+            }
+        }
+        $file = $request->file('photo');
+        if ($file){
+            $response =  Storage::put("public", $file);
+            $data['photo'] = $response;
+        }
+        $product->update($data);
+
+        if (isset($data['items'])){
+            foreach ($data['items'] as $item){
+                $productData = ProductData::where('name',$item['name'])->where('product_id',$product->id)->first();
+                if ($productData){
+                    $productData->update([
+                        'name' =>$item['name'],
+                        'value' =>$item['value'],
+                        'product_id' =>$product->id,
+                    ]);
+                }else{
+                    ProductData::create([
+                        'name' =>$item['name'],
+                        'value' =>$item['value'],
+                        'product_id' =>$product->id,
+                    ]);
+                }
+            }
+        }
+        if ($product->save()) {
+            return back()->with('message', "Muvaffaqiyatli o'zgartirildi");
+        }
 
     }
 
