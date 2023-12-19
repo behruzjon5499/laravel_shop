@@ -32,4 +32,8 @@ class Products extends Model
     {
         return $this->hasMany(ProductData::class,'product_id','id');
     }
+    public function files()
+    {
+        return $this->hasMany(File::class,'fileable_id','id');
+    }
 }

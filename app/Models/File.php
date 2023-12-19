@@ -23,4 +23,8 @@ class File extends Model
         'file',
         'extension',
     ];
+    public function product()
+    {
+        return $this->belongsTo(Products::class,'id','fileable_id');
+    }
 }

@@ -8,6 +8,10 @@
             visibility: hidden;
             position: absolute;
         }
+        .images {
+            visibility: hidden;
+            position: absolute;
+        }
         body {
             padding: 10px;
 
@@ -184,11 +188,11 @@
                             <div class="col">
                                 <div class="ml-2 col-sm-6">
                                     <div id="msg"></div>
-                                    <input type="file" name="photo" class="file" accept="image/*">
+                                    <input type="file" id="mainPhoto" name="photo" class="file" accept="image/*">
                                     <div class="input-group my-3">
                                         <input type="text" class="form-control" disabled placeholder="Upload File" id="file">
                                         <div class="input-group-append">
-                                            <button type="button" class="browse btn btn-primary">{{__('File')}}</button>
+                                            <button type="button" class="browse btn btn-primary">{{__('Main Photo')}}</button>
                                         </div>
                                     </div>
                                 </div>
@@ -197,7 +201,19 @@
                                 </div>
                             </div>
                             <div class="col">
-
+                                <div class="ml-2 col-sm-6">
+                                    <div id="msg"></div>
+                                    <input type="file" name="images[]" id="otherPhoto" class="images" accept="image/*" multiple>
+                                    <div class="input-group my-3">
+                                        <input type="text" class="form-control" disabled placeholder="Upload Images" id="images">
+                                        <div class="input-group-append">
+                                            <button type="button" id="otherImages" class="imagesBrowse btn btn-primary">{{__('Other Photo')}}</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="ml-2 col-sm-6 " id="previewImages">
+                                    <img src="https://placehold.it/80x80" id="preview" class="img-thumbnail">
+                                </div>
                             </div>
 
                         </div>
@@ -246,11 +262,10 @@
 </script>
 <script type="text/javascript">
     $(document).on("click", ".browse", function() {
-        alert('131313');
         var file = $(this).parents().find(".file");
         file.trigger("click");
     });
-    $('input[type="file"]').change(function(e) {
+    $('#mainPhoto').change(function(e) {
         var fileName = e.target.files[0].name;
         $("#file").val(fileName);
 
@@ -262,5 +277,27 @@
         // read the image file as a data URL.
         reader.readAsDataURL(this.files[0]);
     });
+    $(document).on("click", ".imagesBrowse", function() {
+        var images = $(this).parents().find(".images");
+        images.trigger("click");
+    });
+    $('#otherPhoto').change(function(e) {
+        console.log(e.target.files.length,'e.target.files');
+        for (i = 0; i < e.target.files.length; i++) {
+            var fileName = e.target.files[i].name;
+            $("#file").val(fileName);
 
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                var img = document.createElement('img');
+                // get loaded data and render thumbnail.
+                img.setAttribute('src', e.target.result);
+                document.getElementById('previewImages').appendChild(img);
+                console.log(img,'previewImages');
+
+            };
+            // read the image file as a data URL.
+            reader.readAsDataURL(this.files[i]);
+        }
+    });
 </script>

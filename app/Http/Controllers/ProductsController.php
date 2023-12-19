@@ -54,6 +54,7 @@ class ProductsController extends Controller
             'price' => 'required',
             'type' => 'required',
             'items' => 'array',
+            'images' => 'array',
             'photo' => [
                 'required',
             ],
@@ -63,17 +64,19 @@ class ProductsController extends Controller
         $response = Storage::put("public", $file);
         $data['photo'] = $response;
         $model = Products::create($data);
-
-        if (isset($data['photo'])) {
-            File::create([
-                'name' => $file->getClientOriginalName(),
-                'size' => $file->getSize(),
-                'extension' => $file->getClientOriginalExtension(),
-                'fileable_type' => Products::class,
-                'fileable_id' => $model->id,
-                'file' => $response,
-                'host' => 1,
-            ]);
+        if (isset($data['images'])) {
+            foreach ($data['images'] as $image) {
+                $response = Storage::put("public", $image);
+                File::create([
+                    'name' => $image->getClientOriginalName(),
+                    'size' => $image->getSize(),
+                    'extension' => $image->getClientOriginalExtension(),
+                    'fileable_type' => Products::class,
+                    'fileable_id' => $model->id,
+                    'file' => $response,
+                    'host' => 1,
+                ]);
+            }
         }
 
         if (isset($data['items'])) {
@@ -131,6 +134,7 @@ class ProductsController extends Controller
             'price' => 'required',
             'type' => 'required',
             'items' => 'array',
+            'images' => 'array',
         ]);
         $data['owner_id'] = auth()->id();
         if ($request->hasFile('photo')) {
@@ -144,7 +148,20 @@ class ProductsController extends Controller
             $data['photo'] = $response;
         }
         $product->update($data);
-
+        if (isset($data['images'])) {
+            foreach ($data['images'] as $image) {
+                $response = Storage::put("public", $image);
+                File::create([
+                    'name' => $image->getClientOriginalName(),
+                    'size' => $image->getSize(),
+                    'extension' => $image->getClientOriginalExtension(),
+                    'fileable_type' => Products::class,
+                    'fileable_id' => $product->id,
+                    'file' => $response,
+                    'host' => 1,
+                ]);
+            }
+        }
         if (isset($data['items'])) {
             foreach ($data['items'] as $item) {
                 $productData = ProductData::where('name', $item['name'])->where('product_id', $product->id)->first();
