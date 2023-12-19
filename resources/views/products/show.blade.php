@@ -25,7 +25,14 @@
                         <img src="/images/portfolio/5.jpg" alt="Project Image">
                     </div>
                     <div >
-                        <button class="btn btn-success"><a style="color: white" href="{{route('products.edit',['product' => 22])}}">{{__('Edit')}}</a>  </button>
+                        <button class="btn btn-success"><a style="color: white" href="{{route('products.edit',['product' => $products->id])}}">{{__('Edit')}}</a>  </button>
+
+                        <form action="{{ route('products.destroy', $products->id) }}" method="POST"
+                        onsubmit="return confirm('Are you sure you want to delete this product')">
+                            @method('delete')
+                            @csrf
+                            <button class="btn btn-danger btn-sm" title="Delete">Delete</button>
+                        </form>
                     </div>
                     <div class="ps-informations mb-md-30">
                         <h4 class="info-title">Project Information</h4>

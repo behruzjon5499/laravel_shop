@@ -60,28 +60,28 @@ class ProductsController extends Controller
         ]);
         $data['owner_id'] = auth()->id();
         $file = $request->file('photo');
-        $response =  Storage::put("public", $file);
+        $response = Storage::put("public", $file);
         $data['photo'] = $response;
         $model = Products::create($data);
 
-        if (isset($data['photo'])){
+        if (isset($data['photo'])) {
             File::create([
-                'name' =>$file->getClientOriginalName(),
-                'size' =>$file->getSize(),
-                'extension' =>$file->getClientOriginalExtension(),
-                'fileable_type' =>Products::class,
-                'fileable_id' =>$model->id,
-                'file' =>$response,
-                'host' =>1,
+                'name' => $file->getClientOriginalName(),
+                'size' => $file->getSize(),
+                'extension' => $file->getClientOriginalExtension(),
+                'fileable_type' => Products::class,
+                'fileable_id' => $model->id,
+                'file' => $response,
+                'host' => 1,
             ]);
         }
 
-        if (isset($data['items'])){
-            foreach ($data['items'] as $item){
+        if (isset($data['items'])) {
+            foreach ($data['items'] as $item) {
                 ProductData::create([
-                    'name' =>$item['name'],
-                    'value' =>$item['value'],
-                    'product_id' =>$model->id,
+                    'name' => $item['name'],
+                    'value' => $item['value'],
+                    'product_id' => $model->id,
                 ]);
             }
 
@@ -96,9 +96,9 @@ class ProductsController extends Controller
      */
     public function show(Products $product)
     {
-         return view('products.show',[
-             'products' =>$product
-         ]);
+        return view('products.show', [
+            'products' => $product
+        ]);
     }
 
     /**
@@ -107,10 +107,10 @@ class ProductsController extends Controller
     public function edit(Products $product)
     {
         $categories = Category::all();
-            return view('products.edit',[
-                'product'=>$product,
-                'categories'=>$categories
-            ]);
+        return view('products.edit', [
+            'product' => $product,
+            'categories' => $categories
+        ]);
     }
 
     /**
@@ -133,32 +133,32 @@ class ProductsController extends Controller
             'items' => 'array',
         ]);
         $data['owner_id'] = auth()->id();
-        if ($request->hasFile('photo')){
-            if (isset($product->photo)){
+        if ($request->hasFile('photo')) {
+            if (isset($product->photo)) {
                 Storage::delete($product->photo);
             }
         }
         $file = $request->file('photo');
-        if ($file){
-            $response =  Storage::put("public", $file);
+        if ($file) {
+            $response = Storage::put("public", $file);
             $data['photo'] = $response;
         }
         $product->update($data);
 
-        if (isset($data['items'])){
-            foreach ($data['items'] as $item){
-                $productData = ProductData::where('name',$item['name'])->where('product_id',$product->id)->first();
-                if ($productData){
+        if (isset($data['items'])) {
+            foreach ($data['items'] as $item) {
+                $productData = ProductData::where('name', $item['name'])->where('product_id', $product->id)->first();
+                if ($productData) {
                     $productData->update([
-                        'name' =>$item['name'],
-                        'value' =>$item['value'],
-                        'product_id' =>$product->id,
+                        'name' => $item['name'],
+                        'value' => $item['value'],
+                        'product_id' => $product->id,
                     ]);
-                }else{
+                } else {
                     ProductData::create([
-                        'name' =>$item['name'],
-                        'value' =>$item['value'],
-                        'product_id' =>$product->id,
+                        'name' => $item['name'],
+                        'value' => $item['value'],
+                        'product_id' => $product->id,
                     ]);
                 }
             }
@@ -172,8 +172,21 @@ class ProductsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Products $products)
+    public function destroy(Products $product)
     {
-        //
+        $product->delete();
+        $productData = ProductData::where('product_id', $product->id)->get();
+
+        if (isset($product->photo)) {
+            Storage::delete($product->photo);
+        }
+
+        if ($productData) {
+            foreach ($productData as $data) {
+                $data->delete();
+            }
+        }
+
+        return redirect('/');
     }
 }
