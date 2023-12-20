@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Comments;
 use App\Models\File;
 use App\Models\ProductData;
 use App\Models\Products;
@@ -100,9 +101,11 @@ class ProductsController extends Controller
     public function show(Products $product)
     {
         $similarProducts = Products::where('category_id',$product->category_id)->latest()->limit(3)->get();
+        $comments = Comments::where('able_id',$product->id)->where('able_type',Products::class)->get();
         return view('products.show', [
             'product' => $product,
             'similarProducts' => $similarProducts,
+            'comments' => $comments,
         ]);
     }
 

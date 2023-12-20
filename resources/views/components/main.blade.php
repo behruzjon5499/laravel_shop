@@ -34,6 +34,7 @@
     <link rel="stylesheet" href="../../css/rsmenu-main.css">
     <!-- rsmenu transitions css -->
     <link rel="stylesheet" href="../../css/rsmenu-transitions.css">
+    <link rel="stylesheet" href="../../css/app.css">
     <!-- style css -->
     <link rel="stylesheet" type="text/css" href="/style.css">
     <!-- This stylesheet dynamically changed from style.less -->
