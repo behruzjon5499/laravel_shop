@@ -155,7 +155,7 @@
                         @endif
 
                         <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal"
-                                style="background-color: #da002b"> {{__('Sharh qoldirish')}}</button>
+                                style="background-color: #da002b;width: 50%;margin-bottom: 10px"> {{__('Sharh qoldirish')}}</button>
                     </div>
                 </div>
 

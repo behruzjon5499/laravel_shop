@@ -101,7 +101,7 @@ class ProductsController extends Controller
     public function show(Products $product)
     {
         $similarProducts = Products::where('category_id',$product->category_id)->latest()->limit(3)->get();
-        $comments = Comments::where('able_id',$product->id)->where('able_type',Products::class)->get();
+        $comments = Comments::where('able_id',$product->id)->where('able_type',Products::class)->latest()->limit(5)->get();
         return view('products.show', [
             'product' => $product,
             'similarProducts' => $similarProducts,
