@@ -12,7 +12,7 @@
             <div class="row">
                 <div class="col-lg-7 col-md-12 mb-md-30">
                     <div class="project-desc">
-                        <h3>{{$products->name_ru}}</h3>
+                        <h3>{{\App\Helpers\LanguageHelper::get($product, 'name')}}</h3>
 
 
                         <!-- Services Start -->
@@ -26,17 +26,18 @@
                                                 <div class="col-padding clearfix">
                                                     <div id="item-thumb" class="item-thumb">
 
-
+                                                      @if($product->files)
+                                                          @foreach($product->files as $file)
                                                         <div class="owl-dot active">
-                                                            <img src="/images/service/seo/9.jpg" alt="" >
+                                                            <img src="{{Storage::url($file->file)}}" alt="" >
                                                             <h5 class="overlay-feature-title">
                                                                 <a href="#">
                                                                     Web Analytics
                                                                 </a>
                                                             </h5>
                                                         </div>
-
-
+                                                            @endforeach
+                                                        @endif
                                                     </div>
                                                 </div>
                                             </div>
@@ -45,24 +46,17 @@
                                         <div class="col-lg-5 col-md-12 nopadding">
                                             <div id="feature-left" class="menu-carousel owl-carousel image-carousel feature-left custom-js owl-loaded" data-animate-in="fadeIn" data-margin="0" data-nav="false" data-pagi="false" data-items="1">
 
-
+                                                @if($product->files)
+                                                    @foreach($product->files as $file)
                                                 <div class="cl-ft-item">
                                                     <a href="#">
-                                                        <img src="/images/service/seo/9.jpg" alt="" >
+                                                        <img src="{{Storage::url($file->file)}}" alt="" style="height: 100%;width: 100%">
                                                     </a>
-                                                    <div class="feature-content clearfix">
-                                                        <div class="heading-block">
-                                                            <h4 class="feature-title">
-                                                                <a href="#">
-                                                                    Web Analytics
-                                                                </a>
-                                                            </h4>
-                                                            <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis voluptatum del eniti atque corrupti quos dolores...</p>
-                                                        </div>
-                                                    </div>
+
                                                 </div>
 
-
+                                                    @endforeach
+                                                @endif
 
                                             </div>
                                         </div>
@@ -74,77 +68,82 @@
 
                           </div>
                 </div>
-                <div class="col-lg-5 col-md-12">
+                <div class="col-lg-5 col-md-12" style="border: 1px solid #e8e8e8;border-radius:12px;text-align: center">
                     <div class="project-img">
-                        <img src="/images/portfolio/5.jpg" alt="Project Image">
+
+                  <h3>{{number_format($product->price)}}</h3>
+
+                        <p>
+                     Етказиб бериш тўғрисида маълумот:
+                     <br>
+                   <i class="fa fa-car"></i>  Стандарт етказиб бериш <br>
+                     Манзилга қараб 4 соатдан 3 кунгача етказиб берилади
+                 </p>
                     </div>
                     <div >
-                        <button class="btn btn-success"><a style="color: white" href="{{route('products.edit',['product' => $products->id])}}">{{__('Edit')}}</a>  </button>
+                        <a style="color: white" href="{{route('products.edit',['product' => $product->id])}}"> <button style="width: 50%;background-color: #12bf6c;margin: 10px 0" class="btn btn-success">{{__('Edit')}} </button></a>
 
-                        <form action="{{ route('products.destroy', $products->id) }}" method="POST"
+                        <form action="{{ route('products.destroy', $product->id) }}" method="POST"
                         onsubmit="return confirm('Are you sure you want to delete this product')">
                             @method('delete')
                             @csrf
-                            <button class="btn btn-danger btn-sm" title="Delete">Delete</button>
+                            <button style="width: 50%;margin-bottom: 10px" class="btn btn-danger btn-sm" title="Delete">Delete</button>
                         </form>
                     </div>
-                    <div class="ps-informations mb-md-30">
-                        <h4 class="info-title">Project Information</h4>
-                        <ul>
-                            <li><span>Client:  </span>Alex Root</li>
-                            <li><span>Completed Date:  </span>03-02-2018</li>
-                            <li><span>Architect: </span>James Doe</li>
+                    <div class="ps-informations mb-md-30" style="background-color: white">
+                        <h4 class="info-title">{{__('Product information')}}</h4>
+                        <ul style="text-align: left">
+                            @if($product->data)
+                                @foreach($product->data as $data)
+                            <li> {{$data->name}} _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ {{$data->value}}t</li>
+                          @endforeach
+                            @endif
                         </ul>
                     </div>
                 </div>
             </div>
 
-            <div class="p-style-wrap">
-                <h3 class="p-style-title">Project Gallery</h3>
-                <div class="row">
-                    <div class="col-md-4 col-sm-12 mb-sm-30">
-                        <div class="item-grid">
-                            <div class="image-icon">
-                                <img src="/images/project/project-style/1.jpg" alt="Project Image">
-                                <a class="image-popup" href="/images/project/project-style/1.jpg"><i class="fa fa-search"></i></a>
+
+
+            <div class="row">
+                <div class="col-lg-7 col-md-12 mb-md-30">
+                    <div class="project-desc">
+                        <p>{{\App\Helpers\LanguageHelper::get($product, 'description')}}</p>
+
+                        <!-- Services Start -->
+                        <section id="rs-services-2" class="rs-services services-carousel seo-service sec-spacer">
+                            <div class="container">
+
                             </div>
-                        </div>
+                        </section>
+                        <!-- Services End -->
+
                     </div>
-                    <div class="col-md-4 col-sm-12 mb-sm-30">
-                        <div class="item-grid">
-                            <div class="image-icon">
-                                <img src="/images/project/project-style/2.jpg" alt="Project Image">
-                                <a class="image-popup" href="/images/project/project-style/2.jpg"><i class="fa fa-search"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-12">
-                        <div class="item-grid">
-                            <div class="image-icon">
-                                <img src="/images/project/project-style/1.jpg" alt="Project Image">
-                                <a class="image-popup" href="/images/project/project-style/1.jpg"><i class="fa fa-search"></i></a>
-                            </div>
-                        </div>
-                    </div>
+                </div>
+                <div class="col-lg-5 col-md-12" style="border: 1px solid #e8e8e8;border-radius:12px;text-align: center">
+
                 </div>
             </div>
 
-            <div class="page-nav">
-                <ul>
-                    <li class="prev">
-                        <a href="#">
-                            <i class="fa fa-long-arrow-left"></i>
-                            <span>Logo Illustration</span>
-                        </a>
-                    </li>
-                    <li class="next">
-                        <a href="#">
-                            <span>Digital Computer Table</span>
-                            <i class="fa fa-long-arrow-right"></i>
-                        </a>
-                    </li>
-                </ul>
+            <div class="p-style-wrap">
+                <h3 class="p-style-title">{{__("O'xshash mahsulotlar")}}</h3>
+                <div class="row">
+
+                    @if($similarProducts)
+                        @foreach($similarProducts as $similarProduct)
+                    <div class="col-md-4 col-sm-12 mb-sm-30">
+                        <div class="item-grid">
+                            <div class="image-icon">
+                                <img src="{{Storage::url($similarProduct->photo)}}" alt="Project Image" style="width: 100%;height: 300px">
+                                <a class="image-popup" href="{{Storage::url($similarProduct->photo)}}"><i class="fa fa-search"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                        @endforeach
+                    @endif
+                </div>
             </div>
+
         </div>
     </div>
     <!-- Project Gallery End -->

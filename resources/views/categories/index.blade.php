@@ -39,8 +39,8 @@
                                 <a href="{{route('categories.show',['id'=>$category->id])}}">  <img src="{{\Illuminate\Support\Facades\Storage::disk('public')->url($category->photo)}}" alt="Work Section Image" style="height: 300px;"></a>
                             </div>
                             <div class="work-gallery-caption">
-                                <h4><a href="#">{{$category->title_ru}}</a></h4>
-                                <p>{{$category->description_ru}}</p>
+                                <h4><a href="#">{{\App\Helpers\LanguageHelper::get($category, 'title')}}</a></h4>
+                                <p>{{\App\Helpers\LanguageHelper::get($category, 'description')}}</p>
                             </div>
                         </div>
                     </div>

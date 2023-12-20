@@ -99,8 +99,10 @@ class ProductsController extends Controller
      */
     public function show(Products $product)
     {
+        $similarProducts = Products::where('category_id',$product->category_id)->latest()->limit(3)->get();
         return view('products.show', [
-            'products' => $product
+            'product' => $product,
+            'similarProducts' => $similarProducts,
         ]);
     }
 

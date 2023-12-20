@@ -33,8 +33,8 @@
                                 </ul>
                             </div>
                             <div class="blog-desc" style="height: 150px">
-                                <a href="#">{{$product->name_ru}}</a>
-                                <p> {{mb_strimwidth($product->description_uz, 0, 150, '...')}}</p>
+                                <a href="#">{{\App\Helpers\LanguageHelper::get($product, 'name')}}</a>
+                                <p> {{mb_strimwidth(\App\Helpers\LanguageHelper::get($product, 'description'), 0, 150, '...')}}</p>
                                 <p> {{ number_format($product->price) }}</p>
                             </div>
                             <a href="{{route('products.show',['product' => $product])}}" class="readon">{{__('Read More')}}</a>
