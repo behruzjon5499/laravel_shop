@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\File;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class FileController extends Controller
 {
@@ -61,5 +62,22 @@ class FileController extends Controller
     public function destroy(File $file)
     {
         //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function delete(Request $request)
+    {
+          $file = File::where('id',$request->id)->first();
+
+          if ($file){
+              $file->delete();
+              Storage::delete($file->file);
+              return true;
+          }
+          else {
+              return 'file not found';
+          }
     }
 }

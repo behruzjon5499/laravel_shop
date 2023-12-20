@@ -193,6 +193,7 @@ class ProductsController extends Controller
      */
     public function destroy(Products $product)
     {
+        dd(2222);
         $product->delete();
         $productData = ProductData::where('product_id', $product->id)->get();
 

@@ -207,6 +207,10 @@
                                     @if($product->files)
                                     @foreach($product->files as $files)
                                     <img src="{{Storage::url($files->file)}}" id="preview" class="img-thumbnail">
+                                            <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
+                                                <button type="button" style="width: 50%;margin-bottom: 10px" class="btn btn-danger btn-sm fileDelete"  data-id="{{$files->id}}"   >
+                                                    {{__('Delete file')}}</button>
+
                                         @endforeach
                                     @endif
                                 </div>
@@ -223,14 +227,14 @@
                                         <th>{{__('Value')}}</th>
                                     </tr>
 
-                                    @if($product->data)
+                                  @if(count($product->data)>0)
                                 @foreach($product->data as $key=>$data)
                                     <tr>
                                         <td><input type="text" name="items[{{$key}}][name]" value="{{$data->name}}" placeholder="Name" class="form-control" />
                                         </td>
                                         <td><input type="text" name="items[{{$key}}][value]" value="{{$data->value}}" placeholder="Value" class="form-control" />
                                         </td>
-                                       @if($key ==0 )  <td><button type="button" name="add" id="dynamic-ar" class="btn btn-outline-primary">
+                                       @if($key ==0 && $product->data)  <td><button type="button" name="add" id="dynamic-ar" class="btn btn-outline-primary">
                                                 {{__('Add data')}}</button></td>
                                         @else
                                             <td><button type="button" class="btn btn-outline-danger remove-input-field">
@@ -238,6 +242,16 @@
                                         @endif
                                     </tr>
                                         @endforeach
+
+                                        @else
+                                        <tr>
+                                            <td><input type="text" name="items[0][name]" placeholder="Name" class="form-control" />
+                                            </td>
+                                            <td><input type="text" name="items[0][value]" placeholder="Value" class="form-control" />
+                                            </td>
+                                            <td><button type="button" name="add" id="dynamic-ar" class="btn btn-outline-primary">
+                                                    {{__('Add data')}}</button></td>
+                                        </tr>
                                     @endif
                                 </table>
                             </div>
@@ -306,5 +320,23 @@
             reader.readAsDataURL(this.files[i]);
         }
     });
+</script>
+<script type="text/javascript">
+
+    $('.fileDelete').on('click',function() {
+        var id = $(this).data('id');
+        var token =$('#token').val();
+        $.ajax({
+            url:'{{route('file-delete')}}',
+            data:{'id':id,  _token: token,},
+            method:'delete',
+            success:function(res) {
+            },
+            error:function() {
+                alert('error')
+            }
+        })
+    });
+
 </script>
 
