@@ -29,11 +29,9 @@
                                                       @if($product->files)
                                                           @foreach($product->files as $file)
                                                         <div class="owl-dot active">
-                                                            <img src="{{Storage::url($file->file)}}" alt="" >
+                                                            <img src="{{Storage::url($file->file)}}" alt="" style="height: 100px;width: 100px">
                                                             <h5 class="overlay-feature-title">
-                                                                <a href="#">
-                                                                    Web Analytics
-                                                                </a>
+
                                                             </h5>
                                                         </div>
                                                             @endforeach
@@ -50,11 +48,9 @@
                                                     @foreach($product->files as $file)
                                                 <div class="cl-ft-item">
                                                     <a href="#">
-                                                        <img src="{{Storage::url($file->file)}}" alt="" style="height: 100%;width: 100%">
+                                                        <img src="{{Storage::url($file->file)}}" alt="" style="height: 300px;width:300px">
                                                     </a>
-
                                                 </div>
-
                                                     @endforeach
                                                 @endif
 
