@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Events\Feedback;
+use App\Models\Contact;
 use App\Models\Feedbacks;
 use App\Models\User;
 use App\Rules\PhoneNumber;
@@ -23,7 +24,8 @@ class FeedbacksController extends Controller
      */
     public function create()
     {
-        return view('feedback.create');
+        $contact = Contact::first();
+        return view('feedback.create')->with(['contact'=>$contact]);
     }
 
     /**

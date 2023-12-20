@@ -14,10 +14,10 @@
             <div class="breadcrumbs-inner">
                 <div class="container">
                     <div class="breadcrumbs-text">
-                        <h1 class="breadcrumbs-title">Contact</h1>
+                        <h1 class="breadcrumbs-title">{{__('Submit')}}</h1>
                         <ul class="breadcrumbs-subtitle">
-                            <li><a href="{{route('site.index')}}"><i class="fa fa-home"></i>  Home</a></li>
-                            <li>Contact</li>
+                            <li><a href="{{route('site.index')}}"><i class="fa fa-home"></i>  {{__('Home')}}</a></li>
+                            <li>{{__('Contact')}}</li>
                         </ul>
                     </div>
                 </div>
@@ -31,14 +31,14 @@
         <!-- About Icon Start -->
         <div id="rs-about-icon" class="rs-about-icon pt-100 pb-80">
             <div class="container">
-                <div class="icon-section">
+                <div class="icon-section" style="max-width: 900px !important;">
                     <div class="single-icon">
                         <div class="icon-part">
                             <a href="#"><i class="fa fa-phone"></i></a>
                         </div>
                         <div class="icon-text">
-                            <h3 class="icon-title">Call Us</h3>
-                            <a class="icon-info" href="tel:+(+088)589-8745">(+088)589-8745</a>
+                            <h3 class="icon-title">{{__('Call Us')}}</h3>
+                            <a class="icon-info" href="tel:+(+088)589-8745">{{$contact->phone}}</a>
                         </div>
                     </div>
                     <div class="single-icon">
@@ -46,8 +46,8 @@
                             <a href="#"><i class="fa fa-envelope-o"></i></a>
                         </div>
                         <div class="icon-text">
-                            <h3 class="icon-title">Mail Us</h3>
-                            <a class="icon-info" href="mailto:support@rstheme.com">support@rstheme.com</a>
+                            <h3 class="icon-title">{{__('Mail Us')}}</h3>
+                            <a class="icon-info" href="mailto:support@rstheme.com">{{$contact->mail}}</a>
                         </div>
                     </div>
                     <div class="single-icon">
@@ -55,8 +55,8 @@
                             <a href="#"><i class="fa fa-fax"></i></a>
                         </div>
                         <div class="icon-text">
-                            <h3 class="icon-title">Fax</h3>
-                            <p>+3301-341-0476</p>
+                            <h3 class="icon-title">{{__('Fax')}}</h3>
+                            <p>{{$contact->phone}}</p>
                         </div>
                     </div>
                     <div class="single-icon margin-0">
@@ -64,8 +64,8 @@
                             <a href="#"><i class="fa fa-map-marker"></i></a>
                         </div>
                         <div class="icon-text after-none">
-                            <h3 class="icon-title">Address</h3>
-                            <p>Bstart Pro, 103, NY </p>
+                            <h3 class="icon-title">{{__('Address')}}</h3>
+                            <p>{{$contact->address}}</p>
                         </div>
                     </div>
                 </div>
@@ -113,7 +113,7 @@
                                 <textarea placeholder="Your Message Here" rows="7" id="message" name="message" required></textarea>
                             </div>
                             <div class="form-button">
-                                <button type="submit" class="readon">Submit</button>
+                                <button type="submit" class="readon">{{__('Submit')}}</button>
                             </div>
                         </form>
                     </div>
