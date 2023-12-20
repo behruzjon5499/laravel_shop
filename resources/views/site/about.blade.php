@@ -3,14 +3,14 @@
     <!-- Breadcrumbs Start -->
     <div class="rs-breadcrumbs sec-color">
         <div class="breadcrumbs-image">
-            <img src="../images/breadcrumbs/service.jpg" alt="Breadcrumbs Image">
+            <img src="/images/about-slider.jpg" alt="Breadcrumbs Image">
             <div class="breadcrumbs-inner">
                 <div class="container">
                     <div class="breadcrumbs-text">
-                        <h1 class="breadcrumbs-title">Services</h1>
+                        <h1 class="breadcrumbs-title">{{__('About')}}</h1>
                         <ul class="breadcrumbs-subtitle">
-                            <li><a href="index.html"><i class="fa fa-home"></i>  Home</a></li>
-                            <li>Services</li>
+                            <li><a href="{{route('home')}}"><i class="fa fa-home"></i> {{__('Home')}}</a></li>
+                            <li>{{__('About')}}</li>
                         </ul>
                     </div>
                 </div>
@@ -23,77 +23,24 @@
     <div id="how-we-work" class="how-we-work defult-style sec-spacer">
         <div class="container">
             <div class="sec-title extra-none">
-                <h3>{{$about->title_ru}}</h3>
-                <p class="width-70">{{$about->description_ru}}</p>
+                <h3>{{\App\Helpers\LanguageHelper::get($about, 'title')}}</h3>
+                <p class="width-70">{{\App\Helpers\LanguageHelper::get($about, 'description')}}</p>
             </div>
             <div class="work-sec-gallery">
                 <div class="row">
+                    @foreach($posts as $post)
                     <div class="col-lg-4 col-md-6 mb-30">
                         <div class="work-column">
                             <div class="common-box">
-                                <img src="images/work/4.jpg" alt="Work Section Image">
+                                <img src="{{Storage::url($post->photo)}}" alt="Work Section Image" style="width: 100%;height: 250px">
                             </div>
                             <div class="work-gallery-caption">
-                                <h4><a href="#">Financial Planing</a></h4>
-                                <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute </p>
+                                <h4><a href="#">{{\App\Helpers\LanguageHelper::get($post,'title')}}</a></h4>
+                                <p>    {{mb_strimwidth(\App\Helpers\LanguageHelper::get($post,'description'), 0, 150, '...')}}</p>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-6 mb-30">
-                        <div class="work-column">
-                            <div class="common-box">
-                                <img src="images/work/5.jpg" alt="Work Section Image">
-                            </div>
-                            <div class="work-gallery-caption">
-                                <h4><a href="#">Mortage Advisor</a></h4>
-                                <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 mb-30">
-                        <div class="work-column">
-                            <div class="common-box">
-                                <img src="images/work/6.jpg" alt="Work Section Image">
-                            </div>
-                            <div class="work-gallery-caption">
-                                <h4><a href="#">Savings Money</a></h4>
-                                <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 mb-md-30">
-                        <div class="work-column">
-                            <div class="common-box">
-                                <img src="images/work/7.jpg" alt="Work Section Image">
-                            </div>
-                            <div class="work-gallery-caption">
-                                <h4><a href="#">Marketing Ethics</a></h4>
-                                <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-sm-12 mb-sm-30">
-                        <div class="work-column">
-                            <div class="common-box">
-                                <img src="images/work/8.jpg" alt="Work Section Image">
-                            </div>
-                            <div class="work-gallery-caption">
-                                <h4><a href="#">Risk Management</a></h4>
-                                <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="work-column">
-                            <div class="common-box">
-                                <img src="images/work/9.jpg" alt="Work Section Image">
-                            </div>
-                            <div class="work-gallery-caption">
-                                <h4><a href="#">Expense Budgeting</a></h4>
-                                <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute </p>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -135,8 +82,8 @@
                         <div class="col-md-4 col-sm-4 col-xs-12 wow fadeInUp" data-wow-duration=".3s" data-wow-delay="300ms">
                             <div class="rs-counter-list">
                                 <i data-icon="W" class="icon"></i>
-                                <h3 class="rs-counter">15400</h3>
-                                <h4>Purchases</h4>
+                                <h3 class="rs-counter">{{$users_count}}</h3>
+                                <h4>{{__('Users')}}</h4>
                             </div>
                         </div>
                         <!-- COUNTER-LIST END -->
@@ -145,8 +92,8 @@
                         <div class="col-md-4 col-sm-4 col-xs-12 wow fadeInUp" data-wow-duration=".7s" data-wow-delay="300ms">
                             <div class="rs-counter-list">
                                 <i data-icon="C" class="icon"></i>
-                                <h3 class="rs-counter">2500</h3>
-                                <h4>Awars Won</h4>
+                                <h3 class="rs-counter">{{$products_count}}</h3>
+                                <h4>{{__('Products')}}</h4>
                             </div>
                         </div>
                         <!-- COUNTER-LIST END -->
@@ -155,8 +102,8 @@
                         <div class="col-md-4 col-sm-4 col-xs-12 wow fadeInUp" data-wow-duration=".9s" data-wow-delay="300ms">
                             <div class="rs-counter-list">
                                 <i data-icon="P" class="icon"></i>
-                                <h3 class="rs-counter">35400</h3>
-                                <h4>Subscribers</h4>
+                                <h3 class="rs-counter">{{$feedback_count}}</h3>
+                                <h4>{{__('Feedbacks')}}</h4>
                             </div>
                         </div>
                         <!-- COUNTER-LIST END -->
@@ -168,144 +115,6 @@
     </div>
     <!-- Expertise Area end -->
 
-    <!-- Pricing Tables Start -->
-    <section id="rs-pricing" class="rs-pricing gray-color sec-spacer">
-        <div class="container">
-            <div class="sec-title extra-none">
-                <h3>Pricing Plan</h3>
-                <p class="width-70">Duis autem vel eum iriure dolor in hendrerit and vulputate velit esse molest esse diten aese eros et acccumsan et iusto velit esse molestie.</p>
-            </div>
-            <div class="row">
-                <div class="col-lg-4 col-md-6 col-sm-12 mb-md-30">
-                    <div class="pricing-plan">
-                        <div class="pricing-head">
-                            <div class="name">
-                                Custom Price
-                            </div>
-                            <div class="price">
-                                        <span class="value">
-                                            <sup>$</sup>24
-                                        </span>
-                                <span class="duration">
-                                            / per month
-                                        </span>
-                            </div>
-                        </div>
-                        <div class="pricing-body">
-                            <ul>
-                                <li>
-                                    256MB Memory
-                                </li>
-                                <li>
-                                    1 User
-                                </li>
-                                <li>
-                                    1 Website
-                                </li>
-                                <li>
-                                    1 Domain
-                                </li>
-                                <li>
-                                    Unlimited Bandwidth
-                                </li>
-                                <li>
-                                    24/7 Support
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="pricing-footer">
-                            <a href="#" class="p-button">Get Started</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-12">
-                    <div class="pricing-plan featured">
-                        <div class="pricing-head">
-                            <div class="name">
-                                Basic Price
-                            </div>
-                            <div class="price">
-                                        <span class="value">
-                                            <sup>$</sup>30
-                                        </span>
-                                <span class="duration">
-                                            / per month
-                                        </span>
-                            </div>
-                        </div>
-                        <div class="pricing-body">
-                            <ul>
-                                <li>
-                                    256MB Memory
-                                </li>
-                                <li>
-                                    1 User
-                                </li>
-                                <li>
-                                    1 Website
-                                </li>
-                                <li>
-                                    1 Domain
-                                </li>
-                                <li>
-                                    Unlimited Bandwidth
-                                </li>
-                                <li>
-                                    24/7 Support
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="pricing-footer">
-                            <a href="#" class="p-button">Get Started</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-12 hidden-md">
-                    <div class="pricing-plan">
-                        <div class="pricing-head">
-                            <div class="name">
-                                Extendend Price
-                            </div>
-                            <div class="price">
-                                        <span class="value">
-                                            <sup>$</sup>35
-                                        </span>
-                                <span class="duration">
-                                            / per month
-                                        </span>
-                            </div>
-                        </div>
-                        <div class="pricing-body">
-                            <ul>
-                                <li>
-                                    256MB Memory
-                                </li>
-                                <li>
-                                    1 User
-                                </li>
-                                <li>
-                                    1 Website
-                                </li>
-                                <li>
-                                    1 Domain
-                                </li>
-                                <li>
-                                    Unlimited Bandwidth
-                                </li>
-                                <li>
-                                    24/7 Support
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="pricing-footer">
-                            <a href="#" class="p-button">Get Started</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Pricing Tables End -->
 
     <!-- Partner Start -->
     <div id="rs-defult-partner" class="rs-defult-partner sec-color pt-100 pb-100">

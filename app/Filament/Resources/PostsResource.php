@@ -2,10 +2,10 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\NewsResource\Pages;
+use App\Filament\Resources\PostsResource\Pages;
 use App\Models\News;
+use App\Models\Posts;
 use Filament\Forms;
-use Filament\Forms\Components\Card;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\TextInput;
@@ -16,9 +16,9 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class NewsResource extends Resource
+class PostsResource extends Resource
 {
-    protected static ?string $model = News::class;
+    protected static ?string $model = Posts::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -26,21 +26,17 @@ class NewsResource extends Resource
     {
         return $form
             ->schema([
-                Card::make()
-                    ->schema([
-                        TextInput::make('title_ru')
-                            ->required(),
-                        TextInput::make('title_uz')
-                            ->required(),
-                        TextInput::make('title_en')
-                            ->required(),
-                        DatePicker::make('date'),
-                        FileUpload::make('photo'),
-                        TextInput::make('description_ru'),
-                        TextInput::make('description_uz'),
-                        TextInput::make('description_en'),
-
-                    ])
+                TextInput::make('title_ru')
+                    ->required(),
+                TextInput::make('title_uz')
+                    ->required(),
+                TextInput::make('title_en')
+                    ->required(),
+                DatePicker::make('date'),
+                FileUpload::make('photo'),
+                TextInput::make('description_ru'),
+                TextInput::make('description_uz'),
+                TextInput::make('description_en'),
             ]);
     }
 
@@ -60,7 +56,7 @@ class NewsResource extends Resource
                 Tables\Actions\DeleteAction::make()
                     ->after(function (News $record) {
                         if ($record->photo) {
-                            News::disk('public')->delete($record->photo);
+                            Posts::disk('public')->delete($record->photo);
                         }
                     } ),
                 Tables\Actions\ForceDeleteAction::make(),
@@ -82,9 +78,9 @@ class NewsResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListNews::route('/'),
-            'create' => Pages\CreateNews::route('/create'),
-            'edit' => Pages\EditNews::route('/{record}/edit'),
+            'index' => Pages\ListPosts::route('/'),
+            'create' => Pages\CreatePosts::route('/create'),
+            'edit' => Pages\EditPosts::route('/{record}/edit'),
         ];
     }
 }

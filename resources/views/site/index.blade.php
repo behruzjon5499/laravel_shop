@@ -73,7 +73,7 @@
                             <div class="work-gallery-caption">
                                 <h4><a href="{{route('categories.show',['id'=>$category->id])}}">{{$category->name_uz}}</a></h4>
                                 <p>
-                                    {{mb_strimwidth($category->description_uz, 0, 150, '...')}}
+                                    {{mb_strimwidth(\App\Helpers\LanguageHelper::get($category,'description'), 0, 150, '...')}}
                                 </p>
                             </div>
                         </div>
