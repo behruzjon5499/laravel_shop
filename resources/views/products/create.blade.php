@@ -185,6 +185,24 @@
                             </div>
                         </div>
                         <div class="row mb-4">
+                            <!-- Text input -->
+
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="brand_id">{{__('Brands')}}</label>
+                                    <select name="brand_id" class="form-control" id="brand_id">
+                                        <option value="">{{__('Select')}}</option>
+                                        @foreach($brands as $brand)
+                                            <option value="{{$brand->id}}">{{$brand->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col">
+
+                            </div>
+                        </div>
+                        <div class="row mb-4">
                             <div class="col">
                                 <div class="ml-2 col-sm-6">
                                     <div id="msg"></div>

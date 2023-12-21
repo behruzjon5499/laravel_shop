@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Brands;
 use App\Models\Category;
 use App\Models\Comments;
 use App\Models\File;
@@ -31,9 +32,11 @@ class ProductsController extends Controller
     public function create()
     {
         $categories = Category::all();
+        $brands = Brands::all();
 
         return view('products.create', [
-            'categories' => $categories
+            'categories' => $categories,
+            'brands' => $brands,
         ]);
     }
 
@@ -56,6 +59,7 @@ class ProductsController extends Controller
             'type' => 'required',
             'items' => 'array',
             'images' => 'array',
+            'brand_id' => 'integer',
             'photo' => [
                 'required',
             ],
@@ -115,9 +119,11 @@ class ProductsController extends Controller
     public function edit(Products $product)
     {
         $categories = Category::all();
+        $brands = Brands::all();
         return view('products.edit', [
             'product' => $product,
-            'categories' => $categories
+            'categories' => $categories,
+            'brands' => $brands,
         ]);
     }
 
