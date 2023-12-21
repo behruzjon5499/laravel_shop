@@ -99,6 +99,25 @@
                             </form>
                         </div>
                         @endif
+
+
+                        <div>
+                            <a style="color: white" href="{{route('products.edit',['product' => $product->id])}}">
+                                <button style="width: 50%;background-color: #12bf6c;margin: 10px 0"
+                                        class="btn btn-success">{{__("Savatchaga qo'shish")}} </button>
+                            </a>
+
+
+                                <button style="width: 50%; margin: 10px 0"  data-toggle="modal" data-target="#orderModal"
+                                        data-price="{{$product->price}}"
+                                        data-img="{{Storage::url($product->photo)}}"
+                                        data-name="{{\App\Helpers\LanguageHelper::get($product,'name') }}"
+                                        id="OneClickOrder"
+                                        class="btn btn-info">{{__("Bir klikda sotib olish")}} </button>
+
+                        </div>
+
+
                         <div class="ps-informations mb-md-30" style="background-color: white">
                             <h4 class="info-title">{{__('Product information')}}</h4>
                             <ul style="text-align: left">
@@ -231,4 +250,200 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="orderModal" tabindex="-1" aria-labelledby="orderModalLabel" aria-hidden="true">
+        <div class="modal-dialog  modal-dialog-centered" style="max-width: 700px">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="orderModalLabel">{{__("Bir klikda sotib olish")}}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form method="post" action="{{route('orders.store')}}"  id="productOrderForm">
+                    <div class="modal-body">
+
+                        @csrf
+
+                        <section id="cart">
+                        <article class="product">
+                            <header>
+                                <a class="remove">
+                                    <img src="http://www.astudio.si/preview/blockedwp/wp-content/uploads/2012/08/5.jpg" alt="" id="productOrderImg">
+
+                                    <h3>{{__('Remove product')}}</h3>
+                                </a>
+                            </header>
+
+                            <div class="content">
+                                <h1 id="productOrderTitle"></h1>
+                            </div>
+
+                            <footer class="content">
+                                <span class="qt-minus">-</span>
+                                <span class="qt" id="cartOrderCount">1</span>
+                                <span class="qt-plus">+</span>
+
+                                <h2 class="full-price" id="cartOrderPrice">
+
+                                </h2>
+
+                                <h2 class="price"  id="productOrderPrice">
+
+                                </h2>
+                            </footer>
+                        </article>
+
+                        </section>
+
+
+
+
+                        <div class="row">
+                            <div class="col-12" style="margin-bottom: 10px">
+                                <div data-mdb-input-init class="form-outline">
+                                    <label class="form-label" for="name">{{__('Name')}}</label>
+                                    <input type="text" name="name" id="name" class="form-control"/>
+                                    <input type="hidden" name="count" id="orderCount">
+                                    <input type="hidden" name="price" id="orderPrice">
+                                    <input type="hidden" name="product_id" value="{{$product->id}}">
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="form-field">
+                                    <label class="form-label" for="phone_number">{{__('Phone')}}</label>
+                                    <input
+                                        class="masked prefixed form-control"
+                                        type="tel"
+                                        name="phone"
+                                        data-pattern="+***(**) ***-**-**"
+                                        data-prefix="+998"
+                                        placeholder="+998(__) ___-__-__"
+                                        id="phone_number"
+                                        required>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" style="width: 100%"
+                                class="btn btn-primary">{{__('Buyurtma berish')}}</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script type="text/javascript">
+        var check = false;
+
+        function changeVal(el) {
+            var qt = parseFloat(el.parent().children(".qt").html());
+            var price = parseFloat(el.parent().children(".price").html());
+            var eq = Math.round(price * qt * 100) / 100;
+
+            el.parent().children(".full-price").html( eq );
+
+            $('#orderPrice').val(eq);
+
+            changeTotal();
+        }
+
+        function changeTotal() {
+
+            var price = 0;
+
+            $(".full-price").each(function(index){
+                price += parseFloat($(".full-price").eq(index).html());
+            });
+
+            price = Math.round(price * 100) / 100;
+            var tax = Math.round(price * 0.05 * 100) / 100
+            var shipping = parseFloat($(".shipping span").html());
+            var fullPrice = Math.round((price + tax + shipping) *100) / 100;
+
+            if(price == 0) {
+                fullPrice = 0;
+            }
+
+            $(".subtotal span").html(price);
+            $(".tax span").html(tax);
+            $(".total span").html(fullPrice);
+        }
+
+        $(document).ready(function(){
+
+            $(".remove").click(function(){
+                var el = $(this);
+                el.parent().parent().addClass("removed");
+                window.setTimeout(
+                    function(){
+                        el.parent().parent().slideUp('fast', function() {
+                            el.parent().parent().remove();
+                            if($(".product").length == 0) {
+                                if(check) {
+                                    $("#cart").html("<h1>No products!</h1>");
+                                } else {
+                                    $("#cart").html("<h1>No products!</h1>");
+                                }
+                            }
+                            changeTotal();
+                        });
+                    }, 200);
+            });
+
+            $(".qt-plus").click(function(){
+                $(this).parent().children(".qt").html(parseInt($(this).parent().children(".qt").html()) + 1);
+
+                $(this).parent().children(".full-price").addClass("added");
+
+                $('#orderCount').val(parseInt($(this).parent().children(".qt").html()) + 1);
+
+                var el = $(this);
+                window.setTimeout(function(){el.parent().children(".full-price").removeClass("added"); changeVal(el);}, 150);
+            });
+
+            $(".qt-minus").click(function(){
+
+                child = $(this).parent().children(".qt");
+
+                if(parseInt(child.html()) > 1) {
+                    child.html(parseInt(child.html()) - 1);
+                }
+                $('#orderCount').val(parseInt(child.html()) - 1);
+
+                $(this).parent().children(".full-price").addClass("minused");
+
+                var el = $(this);
+                window.setTimeout(function(){el.parent().children(".full-price").removeClass("minused"); changeVal(el);}, 150);
+            });
+
+            window.setTimeout(function(){$(".is-open").removeClass("is-open")}, 1200);
+
+            $(".btn").click(function(){
+                check = true;
+                // $(".remove").click();
+            });
+        });
+    </script>
+
 </x-main>
+<script type="text/javascript">
+
+    $('#OneClickOrder').on('click',function() {
+    var imgUrl = $(this).data('img');
+    var name = $(this).data('name');
+    var price = $(this).data('price');
+
+    var  image = document.getElementById('productOrderImg');
+
+        image.setAttribute('src', imgUrl);
+        $('#productOrderTitle').html(name);
+        $('#productOrderPrice').html(price);
+        $('#cartOrderPrice').html(price);
+
+    });
+
+</script>

@@ -69,6 +69,7 @@ Route::get('language/{locale}',[\App\Http\Controllers\LanguageController::class,
 
 Route::middleware('auth')->group(function () {
  Route::resource('products',ProductsController::class);
+ Route::resource('orders',\App\Http\Controllers\OrdersController::class);
 // Route::resource('file',\App\Http\Controllers\FileController::class);
  Route::post('comments/store',[\App\Http\Controllers\CommentsController::class,'store'])->name('comments.store');
  Route::delete('file-delete',[\App\Http\Controllers\FileController::class,'delete'])->name('file-delete');
