@@ -64,4 +64,17 @@ class User extends Authenticatable implements FilamentUser
             get: fn($value) => ucfirst($value),
     );
     }
+    public function modelHasRoles()
+    {
+        return $this->hasMany(ModelHasRoles::class,'model_id','id')->where('model_type',User::class)->with('role');
+    }
+    public function hasRole($role_name)
+    {
+        foreach ($this->modelHasRoles as $role){
+
+            if ($role->role->name == $role_name)
+                return true;
+        }
+        return false;
+    }
 }

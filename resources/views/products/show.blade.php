@@ -82,6 +82,7 @@
                                 {{__('Манзилга қараб 4 соатдан 3 кунгача етказиб берилади')}}
                             </p>
                         </div>
+                        @if(\Illuminate\Support\Facades\Auth::user()->hasRole('admin'))
                         <div>
                             <a style="color: white" href="{{route('products.edit',['product' => $product->id])}}">
                                 <button style="width: 50%;background-color: #12bf6c;margin: 10px 0"
@@ -97,6 +98,7 @@
                                 </button>
                             </form>
                         </div>
+                        @endif
                         <div class="ps-informations mb-md-30" style="background-color: white">
                             <h4 class="info-title">{{__('Product information')}}</h4>
                             <ul style="text-align: left">
