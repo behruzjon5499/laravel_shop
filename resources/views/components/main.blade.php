@@ -94,10 +94,10 @@
                 <div class="col-lg-4 col-md-12">
                     <div class="toolbar-sl-share">
                         <ul>
-                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                            <li><a href="#"><i class="fa fa-pinterest-p"></i></a></li>
-                            <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+                            <li><a href="https://t.me/bekhruzjon_077"><i class="fa fa-telegram"></i></a></li>
+                            <li><a href="https://www.instagram.com/"><i class="fa fa-instagram"></i></a></li>
+                            <li><a href="https://facebook.com"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="https://www.youtube.com/"><i class="fa fa-youtube"></i></a></li>
                         </ul>
                     </div>
                 </div>
@@ -122,7 +122,7 @@
                             <ul class="nav-menu">
                                 <!-- Home -->
                                 <li class="rs-mega-menu current-menu-item menu-item-has-children"><a class="active"
-                                                                                                     href="#">{{__('index.Home')}} </a>
+                                                                                                     href="{{route('home')}}">{{__('index.Home')}} </a>
 
                                 </li>
                                 <li class="rs-mega-menu current-menu-item menu-item-has-children"><a class="active"
@@ -259,65 +259,49 @@
                             <img src="../images/logo-2.png" alt="Footer Logo">
                         </a>
                         <ul class="footer-address">
-                            <li><i class="fa fa-map-marker"></i><a href="#">Hepta pro, New Yourk, NY 254</a></li>
-                            <li><i class="fa fa-phone"></i><a href="#">123-456-789</a></li>
-                            <li><i class="fa fa-envelope-o"></i><a href="#">info@yourdmain.com </a></li>
-                            <li><i class="fa fa-clock-o"></i><p class="mb-0">Opening Hours: 8.30 AM – 7.00 PM</p></li>
+                            <li><i class="fa fa-map-marker"></i><a href="#">{{$contact->address}}</a></li>
+                            <li><i class="fa fa-phone"></i><a href="#">{{$contact->phone}}</a></li>
+                            <li><i class="fa fa-envelope-o"></i><a href="#">{{$contact->mail}} </a></li>
+                            <li><i class="fa fa-clock-o"></i><p class="mb-0">{{__('Opening Hours')}}: {{$contact->open_hours}} – {{$contact->close_hours}}</p></li>
                         </ul>
                         <ul class="social-links">
-                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                            <li><a href="#"><i class="fa fa-pinterest-p"></i></a></li>
-                            <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+                            <li><a href="https://t.me/bekhruzjon_077"><i class="fa fa-telegram"></i></a></li>
+                            <li><a href="https://www.instagram.com/"><i class="fa fa-instagram"></i></a></li>
+                            <li><a href="https://facebook.com"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="https://www.youtube.com/"><i class="fa fa-youtube"></i></a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-12 col-sm-12 mb-md-30">
                     <h5 class="footer-title">RECENT POSTS</h5>
-                    <div class="recent-post-widget">
-                        <div class="post-item mb-30">
-                            <div class="post-image">
-                                <img src="/images/blog/1.jpg" alt="post image">
-                            </div>
-                            <div class="post-desc">
-                                <a href="#">Business Needs Customers</a>
-                                <span><i class="fa fa-calendar"></i> August 7, 2018 </span>
-                            </div>
-                        </div>
+                    <div class="about-widget">
 
-                        <div class="post-item mb-30">
-                            <div class="post-image">
-                                <img src="/images/blog/2.jpg" alt="post image">
-                            </div>
-                            <div class="post-desc">
-                                <a href="#"> Business Structured </a>
-                                <span><i class="fa fa-calendar"></i> August 7, 2018 </span>
-                            </div>
-                        </div>
+                        <ul class="footer-address">
+                            <li class="active"><a href="{{route('home')}}">{{__('Home')}}</a></li>
+                            <li><a href="{{route('categories.index')}}">{{__('index.Categories')}}</a></li>
+                            <li><a href="{{route('products.index')}}">{{__('Products')}}</a></li>
+                            <li><a href="{{route('site.about')}}">{{__('index.About')}}</a></li>
+                            <li><a href="{{route('feedbacks.create')}}">{{__('index.Contact')}}</a></li>
+                        </ul>
 
-                        <div class="post-item">
-                            <div class="post-image">
-                                <img src="/images/blog/3.jpg" alt="post image">
-                            </div>
-                            <div class="post-desc">
-                                <a href="#"> Small Business Trends </a>
-                                <span><i class="fa fa-calendar"></i> August 7, 2018 </span>
-                            </div>
-                        </div>
+
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-12 col-sm-12">
-                    <h5 class="footer-title">Newsletter</h5>
-                    <!-- Newsletter Start -->
-                    <div class="news-info">
-                        <p class="news-note white-color">We create WordPress Theme for more than three years. Our team goal to make beautiful theme without bug and optimize.</p>
+
+                    <div class="row">
+                        <div class="col-md-4"><a href="https://xb.uz/"><img src="/images/partner/xazna.png" alt="" style="width: 100px;height: 70px"></a></div>
+                        <div class="col-md-4"><a href="https://payme.uz/home/main"><img src="/images/partner/payme.png" alt="" style="width: 100px;height: 70px"></a></div>
+                        <div class="col-md-4"><a href="https://click.uz/ru"><img src="/images/partner/click.png" alt="" style="width: 100px;height: 70px;"></a></div>
+
                     </div>
-                    <form class="news-form footer-form">
-                        <input type="text" class="form-input" placeholder="Enter Your Email">
-                        <button type="submit" class="form-button">
-                            <i class="fa fa-paper-plane"></i>
-                        </button>
-                    </form>
+                    <div class="row" style="margin-top: 10px">
+                        <div class="col-md-4"><a href="https://uzcard.uz/ru"><img src="/images/partner/uzcard.png" alt="" style="width: 100px;height: 70px"></a></div>
+                        <div class="col-md-4"><a href="https://humocard.uz/uz/"><img src="/images/partner/humo.jpg" alt="" style="width: 100px;height: 70px"></a></div>
+                        <div class="col-md-4"><a href="https://app.paynet.uz/"><img src="/images/partner/paynet.png" alt="" style="width: 100px;height: 70px"></a></div>
+                    </div>
+
+
                 </div>
             </div>
         </div>
@@ -327,16 +311,16 @@
             <div class="ft-bottom-right">
                 <div class="footer-bottom-share">
                     <ul>
-                        <li class="active"><a href="index.html">Home</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="services.html">Services</a></li>
-                        <li><a href="blog.html">Blog</a></li>
-                        <li><a href="contact.html">Contact</a></li>
+                        <li class="active"><a href="{{route('home')}}">{{__('Home')}}</a></li>
+                        <li><a href="{{route('categories.index')}}">{{__('index.Categories')}}</a></li>
+                        <li><a href="{{route('products.index')}}">{{__('Products')}}</a></li>
+                        <li><a href="{{route('site.about')}}">{{__('index.About')}}</a></li>
+                        <li><a href="{{route('feedbacks.create')}}">{{__('index.Contact')}}</a></li>
                     </ul>
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2018 All Rights Reserved</p>
+                <p>Developer bekhruzjon</p>
             </div>
         </div>
     </div>
