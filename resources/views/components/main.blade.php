@@ -135,7 +135,7 @@
                                 @auth
                                     <li class="rs-mega-menu  "><a class="active"  href="{{route('orders.index')}}">
                                             <img src="/images/cart-logo.png" alt="" style="width: 50px; height: 50px">
-                                         <span id="orderCartCount" style="color: white;font-size: 20px;background-color: red;border-radius: 100%">1</span>
+                                         <span id="orderCartCount" style="color: white;font-size: 16px;background-color: red;border-radius: 50%;padding: 0 6px">1</span>
                                         </a></li>
                                     <li class="menu-item-has-children"><a href="{{route('logout')}}">{{__('index.Logout')}} </a> </li>
                                 @else
