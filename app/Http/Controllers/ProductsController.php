@@ -16,9 +16,9 @@ class ProductsController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index($category_id = null)
     {
-        $products = Products::latest()->paginate(6);
+        $products = Products::latest()->where('category_id',$category_id)->paginate(6);
 
         return view('products.index', [
             'products' => $products,

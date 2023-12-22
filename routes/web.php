@@ -69,6 +69,7 @@ Route::get('language/{locale}',[\App\Http\Controllers\LanguageController::class,
 
 Route::middleware('auth')->group(function () {
  Route::resource('products',ProductsController::class);
+ Route::get('products/index/{category_id}',[ProductsController::class,'index'])->name('productIndex');
  Route::resource('orders',\App\Http\Controllers\OrdersController::class);
  Route::post('orders/save',[\App\Http\Controllers\OrdersController::class,'orderSave'])->name('orderSave');
 // Route::resource('file',\App\Http\Controllers\FileController::class);

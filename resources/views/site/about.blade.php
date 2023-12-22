@@ -1,4 +1,7 @@
-@include('site.header')
+<x-main>
+    <x-slot:title>
+        {{__('About')}}
+    </x-slot:title>
 <div class="main-content">
     <!-- Breadcrumbs Start -->
     <div class="rs-breadcrumbs sec-color">
@@ -130,4 +133,4 @@
     </div>
     <!-- Partner End -->
 </div>
-@include('site.footer')
+</x-main>

@@ -9,7 +9,9 @@
         <div class="container">
             <div class="sec-title">
                 <h3>{{__('Latest products')}}</h3>
+                @if(\Illuminate\Support\Facades\Auth::user()->hasRole('admin'))
                 <button class="btn btn-success"><a style="color: white;" href="{{route('products.create')}}">{{__('Product create')}}</a></button>
+                @endif
             </div>
             <div class="row">
                 @foreach($products as $product)
