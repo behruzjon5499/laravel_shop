@@ -6,6 +6,7 @@ use App\Models\Brands;
 use App\Models\Category;
 use App\Models\Comments;
 use App\Models\File;
+use App\Models\Orders;
 use App\Models\ProductData;
 use App\Models\Products;
 use Illuminate\Http\Request;
@@ -106,10 +107,12 @@ class ProductsController extends Controller
     {
         $similarProducts = Products::where('category_id',$product->category_id)->latest()->limit(3)->get();
         $comments = Comments::where('able_id',$product->id)->where('able_type',Products::class)->latest()->limit(5)->get();
+        $order = Orders::where('product_id',$product->id)->where('status',Orders::TYPE_PROCESS)->latest()->first();
         return view('products.show', [
             'product' => $product,
             'similarProducts' => $similarProducts,
             'comments' => $comments,
+            'order' => $order,
         ]);
     }
 

@@ -100,13 +100,31 @@
                         </div>
                         @endif
 
-
+                        @if(\Illuminate\Support\Facades\Auth::user())
                         <div>
+                            @if(!$order)
+
+                                <form method="post" action="{{route('orders.store')}}"  id="productOrderForm">
+                                @csrf
+                                    <input type="hidden" name="name" value="{{\Illuminate\Support\Facades\Auth::user()->name}}"  class="form-control"/>
+                                    <input type="hidden" name="count" value="1">
+                                    <input type="hidden" name="price" value="{{$product->price}}">
+                                    <input type="hidden" name="product_id" value="{{$product->id}}">
+
                             <a style="color: white" href="{{route('products.edit',['product' => $product->id])}}">
-                                <button style="width: 50%;background-color: #12bf6c;margin: 10px 0"
+                                <button style="width: 50%;background-color: #12bf6c;margin: 10px 0" type="submit"
                                         class="btn btn-success">{{__("Savatchaga qo'shish")}} </button>
                             </a>
 
+                                </form>
+
+
+                            @else
+                                <a style="color: white" href="{{route('orders.index')}}">
+                                    <button style="width: 50%;background-color: #12bf6c;margin: 10px 0"
+                                            class="btn btn-success">{{__("Savatchani ko'rish")}} </button>
+                                </a>
+                            @endif
 
                                 <button style="width: 50%; margin: 10px 0"  data-toggle="modal" data-target="#orderModal"
                                         data-price="{{$product->price}}"
@@ -116,7 +134,7 @@
                                         class="btn btn-info">{{__("Bir klikda sotib olish")}} </button>
 
                         </div>
-
+                        @endif
 
                         <div class="ps-informations mb-md-30" style="background-color: white">
                             <h4 class="info-title">{{__('Product information')}}</h4>
@@ -305,6 +323,7 @@
                                     <input type="text" name="name" id="name" class="form-control"/>
                                     <input type="hidden" name="count" id="orderCount">
                                     <input type="hidden" name="price" id="orderPrice">
+                                    <input type="hidden" name="status" value="{{\App\Models\Orders::TYPE_SALE}}">
                                     <input type="hidden" name="product_id" value="{{$product->id}}">
                                 </div>
                             </div>

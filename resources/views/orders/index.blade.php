@@ -28,6 +28,7 @@
                             <input type="hidden" name="Request[{{$key}}][price]" value="{{$order->price}}" id="orderPrice">
                             <input type="hidden" name="Request[{{$key}}][product_id]" value="{{$order->product->id}}">
                             <input type="hidden" name="Request[{{$key}}][order_id]" value="{{$order->id}}">
+                            <input type="hidden" name="Request[{{$key}}][status]" value="{{\App\Models\Orders::TYPE_SALE}}">
 
                         </div>
 

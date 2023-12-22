@@ -44,16 +44,17 @@ class OrdersController extends Controller
     {
         $data = $request->validate([
             'name' => 'required',
-            'phone' => ['required', new PhoneNumber],
+            'phone' => [ new PhoneNumber],
             'product_id' => 'required',
             'count' => 'required',
             'price' => 'required',
+            'status' => 'integer',
         ]);
 
         $this->orderService->create($data);
         return back()->with('message', 'Muvaffaqiyatli qabul qilindi');
     }
-
+        // TODO More order save
     public function orderSave(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -62,6 +63,7 @@ class OrdersController extends Controller
             'Request.*.price' => 'required',
             'Request.*.order_id' => 'required',
             'Request.*.product_id' => 'required',
+            'Request.*.status' => 'integer',
         ]);
         if (isset($validator->getData()['Request']) && count($validator->getData()['Request']) > 0) {
             foreach ($validator->getData()['Request'] as $data):
@@ -71,6 +73,7 @@ class OrdersController extends Controller
         }
         return back()->with('error', 'Qabul qilinmadi');
     }
+
 
     /**
      * Display the specified resource.
