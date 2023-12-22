@@ -50,6 +50,96 @@
     </div>
     <!-- HOW WE WORK END -->
 
+
+    <!-- Services Start -->
+    <section id="rs-services" class="rs-services-3 rs-service-style1 sec-color pt-100 pb-70">
+        <div class="container">
+            <div class="row rs-vertical-middle">
+                <div class="col-lg-4 col-md-12 mb-md-50">
+                    <div class="service-title">
+                        <h3>25 Years of Experience in Financial & Business Services
+                        </h3>
+                        <p>On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment</p>
+                        <a href="#" class="readon">View Services</a>
+                    </div>
+                </div>
+                <div class="col-lg-8 col-md-12">
+                    <div class="row">
+                        <!-- 1st -->
+                        <div class="col-md-6 col-sm-12">
+                            <div class="common">
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <div class="icon-part">
+                                            <i data-icon="&#xe001;" class="icon-part"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <div class="text">
+                                            <a href="services-details.html"><h4>Business Consulting</h4></a>
+                                            <p>Lorem ipsum dolor sit amet dolore, consectetur adipisicing elit. Nulla, quam dolore nemo.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="common">
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <div class="icon-part">
+                                            <i data-icon="&#xe026;" class="icon-part"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <div class="text">
+                                            <a href="services-details.html"><h4>Risk Management</h4></a>
+                                            <p>Lorem ipsum dolor sit amet dolore, consectetur adipisicing elit. Nulla, quam dolore nemo.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 2nd -->
+                        <div class="col-md-6 col-sm-12">
+                            <div class="common">
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <div class="icon-part">
+                                            <i data-icon="%" class="icon-part"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <div class="text">
+                                            <a href="services-details.html"><h4>Market Research</h4></a>
+                                            <p>Lorem ipsum dolor sit amet dolore, consectetur adipisicing elit. Nulla, quam dolore nemo.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="common">
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <div class="icon-part">
+                                            <i data-icon="/" class="icon-part"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <div class="text">
+                                            <a href="services-details.html"><h4>Financial Consulting</h4></a>
+                                            <p>Lorem ipsum dolor sit amet dolore, consectetur adipisicing elit. Nulla, quam dolore nemo.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 4th -->
+
+        </div>
+    </section>
+    <!-- Services End -->
+
     <!-- Expertise Area satar -->
     <div class="why-choose-us rs-skills corporate-skills right-skills-bar" style="background-image: url('../images/youtube_back.jpg')">
         <div class="row align-items-center">

@@ -35,7 +35,7 @@
                                 </ul>
                             </div>
                             <div class="blog-desc" style="height: 150px">
-                                <a href="#">{{\App\Helpers\LanguageHelper::get($product, 'name')}}</a>
+                                <a href="{{route('products.show',['product' => $product])}}">{{\App\Helpers\LanguageHelper::get($product, 'name')}}</a>
                                 <p> {{mb_strimwidth(\App\Helpers\LanguageHelper::get($product, 'description'), 0, 150, '...')}}</p>
                                 <p> {{ number_format($product->price) }}</p>
                             </div>

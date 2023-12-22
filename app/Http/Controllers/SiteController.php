@@ -34,12 +34,16 @@ class SiteController extends Controller
         $sliders = Cache::remember('sliders_list',now()->addSeconds(300),function (){
             return Sliders::get();
         });
+        $products = Cache::remember('products_list',now()->addSeconds(300),function (){
+            return Products::latest()->limit(6)->get();
+        });
 
         return view('site.index',[
             'categories' => $categories,
             'partners' => $partners,
             'news' => $news,
             'sliders' => $sliders,
+            'products' => $products,
         ]);
 
     }
