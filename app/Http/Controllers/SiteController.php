@@ -10,6 +10,7 @@ use App\Models\Partners;
 use App\Models\Posts;
 use App\Models\Products;
 use App\Models\Skills;
+use App\Models\Sliders;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
@@ -30,10 +31,15 @@ class SiteController extends Controller
         $news = Cache::remember('news_list',now()->addSeconds(300),function (){
             return News::latest()->get();
         });
+        $sliders = Cache::remember('sliders_list',now()->addSeconds(300),function (){
+            return Sliders::get();
+        });
+
         return view('site.index',[
             'categories' => $categories,
             'partners' => $partners,
             'news' => $news,
+            'sliders' => $sliders,
         ]);
 
     }

@@ -12,6 +12,8 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Illuminate\Support\Facades\Storage;
+
 class AboutResource extends Resource
 {
     protected static ?string $model = About::class;
@@ -62,7 +64,7 @@ class AboutResource extends Resource
                 Tables\Actions\DeleteAction::make()
                     ->after(function (About $record) {
                         if ($record->photo) {
-                            About::disk('public')->delete($record->photo);
+                            Storage::disk('public')->delete($record->photo);
                         }
                     } ),
                 Tables\Actions\ForceDeleteAction::make(),

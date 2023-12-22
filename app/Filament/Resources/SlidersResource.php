@@ -2,10 +2,10 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\PartnersResource\Pages;
-use App\Models\Partners;
-use Filament\Forms;
-use Filament\Forms\Components\Card;
+use App\Filament\Resources\SlidersResource\Pages;
+use App\Models\News;
+use App\Models\Sliders;
+use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
@@ -14,25 +14,26 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Support\Facades\Storage;
 
-class PartnersResource extends Resource
+class SlidersResource extends Resource
 {
-    protected static ?string $model = Partners::class;
+    protected static ?string $model = Sliders::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
-    protected static ?string $navigationGroup = 'Contacts';
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Card::make()
-                    ->schema([
-                        TextInput::make('name')
-                            ->required(),
-                        TextInput::make('sort')
-                            ->required(),
-                        FileUpload::make('logo')
-                    ])
+                TextInput::make('title_ru')
+                    ->required(),
+                TextInput::make('title_uz')
+                    ->required(),
+                TextInput::make('title_en')
+                    ->required(),
+                FileUpload::make('photo'),
+                TextInput::make('description_ru'),
+                TextInput::make('description_uz'),
+                TextInput::make('description_en'),
             ]);
     }
 
@@ -40,9 +41,8 @@ class PartnersResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name')->sortable(),
-                Tables\Columns\TextColumn::make('sort')->sortable(),
-                Tables\Columns\ImageColumn::make('logo')->sortable(),
+                Tables\Columns\TextColumn::make('title_uz')->sortable(),
+                Tables\Columns\ImageColumn::make('photo'),
             ])
             ->filters([
                 //
@@ -50,16 +50,15 @@ class PartnersResource extends Resource
             ->actions([
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make()
-                    ->after(function (Partners $record) {
-                        if ($record->logo) {
-                            Storage::disk('public')->delete($record->logo);
+                    ->after(function (Sliders $record) {
+                        if ($record->photo) {
+                            Storage::disk('public')->delete($record->photo);
                         }
                     } ),
                 Tables\Actions\ForceDeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\ForceDeleteBulkAction::make(),
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ]);
@@ -75,9 +74,9 @@ class PartnersResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListPartners::route('/'),
-            'create' => Pages\CreatePartners::route('/create'),
-            'edit' => Pages\EditPartners::route('/{record}/edit'),
+            'index' => Pages\ListSliders::route('/'),
+            'create' => Pages\CreateSliders::route('/create'),
+            'edit' => Pages\EditSliders::route('/{record}/edit'),
         ];
     }
 }

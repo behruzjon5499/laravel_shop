@@ -15,6 +15,7 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Facades\Storage;
 
 class NewsResource extends Resource
 {
@@ -60,7 +61,7 @@ class NewsResource extends Resource
                 Tables\Actions\DeleteAction::make()
                     ->after(function (News $record) {
                         if ($record->photo) {
-                            News::disk('public')->delete($record->photo);
+                            Storage::disk('public')->delete($record->photo);
                         }
                     } ),
                 Tables\Actions\ForceDeleteAction::make(),

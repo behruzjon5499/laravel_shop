@@ -14,6 +14,7 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Facades\Storage;
 
 class ContactResource extends Resource
 {
@@ -61,7 +62,7 @@ class ContactResource extends Resource
                 Tables\Actions\DeleteAction::make()
                     ->after(function (Contact $record) {
                         if ($record->logo) {
-                            Contact::disk('public')->delete($record->logo);
+                            Storage::disk('public')->delete($record->logo);
                         }
                     } ),
                 Tables\Actions\ForceDeleteAction::make(),
