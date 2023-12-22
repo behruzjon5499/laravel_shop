@@ -40,4 +40,8 @@ class Products extends Model
     {
         return $this->hasMany(File::class,'fileable_id','id');
     }
+    public function orders()
+    {
+        return $this->hasMany(Orders::class,'product_id','id');
+    }
 }

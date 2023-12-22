@@ -123,47 +123,20 @@
                                 <!-- Home -->
                                 <li class="rs-mega-menu current-menu-item menu-item-has-children"><a class="active"
                                                                                                      href="{{route('home')}}">{{__('index.Home')}} </a>
-
                                 </li>
                                 <li class="rs-mega-menu current-menu-item menu-item-has-children"><a class="active"
                                                                                                      href="{{route('categories.index')}}">{{__('index.Categories')}}  </a>
-
                                 </li>
 
                                 <li class="rs-mega-menu  "><a class="active"  href="{{route('products.index')}}">{{__('Products')}} </a></li>
-                                <li class="menu-item-has-children"><a href="shop.html">Shop<i
-                                            class="fa fa-angle-down"></i></a>
-                                    <ul class="sub-menu">
-                                        <li><a href="shop-single.html">Single Product</a></li>
-                                        <li><a href="cart.html">Cart</a></li>
-                                        <li><a href="checkout.html">Checkout</a></li>
-                                    </ul>
-                                </li>
-                                <li class="menu-item-has-children"><a href="blog.html">Blog<i
-                                            class="fa fa-angle-down"></i></a>
-                                    <ul class="sub-menu">
-                                        <li class="menu-item-has-children"><a href="#">Blog Grid<i
-                                                    class="fa fa-angle-down"></i></a>
-                                            <ul class="sub-menu">
-                                                <li><a href="blog-2.html">Blog 2 Column</a></li>
-                                                <li><a href="blog-3.html">Blog 3 Column</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="menu-item-has-children"><a href="#">Blog Sidebar<i
-                                                    class="fa fa-angle-down"></i></a>
-                                            <ul class="sub-menu">
-                                                <li><a href="blog-left.html">Blog Left Sidebar</a></li>
-                                                <li><a href="blog-right.html">Blog Right Sidebar</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="menu-item-has-children"><a href="#">Single Post </a>
 
-                                        </li>
-                                    </ul>
-                                </li>
                                 <li class="rs-mega-menu  "><a class="active"  href="{{route('site.about')}}">{{__('index.About')}} </a></li>
                                 <li class="menu-item-has-children"><a href="{{route('feedbacks.create')}}">{{__('index.Contact')}} </a> </li>
                                 @auth
+                                    <li class="rs-mega-menu  "><a class="active"  href="{{route('orders.index')}}">
+                                            <img src="/images/cart-logo.png" alt="" style="width: 50px; height: 50px">
+                                         <span id="orderCartCount" style="color: white;font-size: 20px;background-color: red;border-radius: 100%">1</span>
+                                        </a></li>
                                     <li class="menu-item-has-children"><a href="{{route('logout')}}">{{__('index.Logout')}} </a> </li>
                                 @else
                                     <li class="menu-item-has-children"><a href="{{route('login')}}">{{__('index.Login')}} </a> </li>
@@ -241,6 +214,17 @@
         toastr.options.progressBar = true;
         $(function () {
             toastr.success("{{\Illuminate\Support\Facades\Session::get('message')}}", {timeOut: 5000})
+        });
+
+    </script>
+@endif
+@if(\Illuminate\Support\Facades\Session::has('error'))
+
+    <script>
+        toastr.options.closeButton = true;
+        toastr.options.progressBar = true;
+        $(function () {
+            toastr.error("{{\Illuminate\Support\Facades\Session::get('error')}}", {timeOut: 5000})
         });
 
     </script>

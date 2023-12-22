@@ -395,6 +395,10 @@
             });
 
             $(".qt-plus").click(function(){
+
+               if ($(this).parent().children(".qt").html()==5){
+                return false;
+                }
                 $(this).parent().children(".qt").html(parseInt($(this).parent().children(".qt").html()) + 1);
 
                 $(this).parent().children(".full-price").addClass("added");

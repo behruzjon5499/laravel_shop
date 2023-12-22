@@ -20,5 +20,10 @@ class Orders extends Model
      'phone',
      'count',
      'price',
+     'status',
     ];
+    public function product()
+    {
+        return $this->hasOne(Products::class,'id','product_id');
+    }
 }
