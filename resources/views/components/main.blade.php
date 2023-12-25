@@ -87,6 +87,10 @@
                                 <p> <a href="{{ route('change_locale',['locale' => 'ru']) }}">Ru</a> </p>
 
                             </li>
+                            <li><i class="fa fa-language"></i>
+                                <p> <a href="{{ route('change_locale',['locale' => 'en']) }}">En</a> </p>
+
+                            </li>
                         </ul>
 
                     </div>

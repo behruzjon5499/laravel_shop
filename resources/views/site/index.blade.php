@@ -138,65 +138,6 @@
     <!-- Portfolio Section End -->
 
 
-    <!-- Expertise Area satar -->
-    <div class="why-choose-us defult-style sec-color pt-100">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6 col-md-12 mb-md-50">
-                    <div class="video-section-area">
-                        <div class="image-here">
-                            <img src="images/video/video.jpg" alt="">
-                            <div class="video-icon-here">
-                                <a class="popup-videos animated pulse" href="https://www.youtube.com/watch?v=YLN1Argi7ik" title="Video Icon">
-                                    <span></span>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="overly-border"></div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-12 services-responsibiity">
-                    <div class="service-res-inner">
-                        <div class="sec-title">
-                            <h3>Why Choose Us</h3>
-                        </div>
-                        <div class="services-item">
-                            <div class="service-mid-icon">
-                                <a href="#"><span class="service-mid-icon-container"><i data-icon="a" class="icon"></i></span></a>
-                            </div>
-                            <div class="services-desc">
-                                <h3 class="services-title"><a href="service-details.html">First Working Prosses</a></h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut</p>
-                            </div>
-                        </div>
-                        <div class="services-item">
-                            <div class="service-mid-icon">
-                                <a href="#"><span class="service-mid-icon-container"><i data-icon="6" class="icon"></i></span></a>
-                            </div>
-                            <div class="services-desc">
-                                <h3 class="services-title"><a href="service-details.html">Dedicate Team</a></h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut</p>
-                            </div>
-                        </div>
-                        <div class="services-item margin-0">
-                            <div class="service-mid-icon">
-                                <a href="#"><span class="service-mid-icon-container"><i data-icon="&#xe023;" class="icon"></i></span></a>
-                            </div>
-                            <div class="services-desc">
-                                <h3 class="services-title"><a href="service-details.html">24/7 Hours Support</a></h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Expertise Area end -->
-
-
-
-
     <!-- News Start -->
     <section id="rs-blog" class="rs-blog sec-spacer">
         <div class="container">
