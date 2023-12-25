@@ -41,6 +41,7 @@ Route::get('/change-language/{locale}', function ($locale) {
 
 Route::middleware(['auth'])->group(function(){
     Route::resource('feedbacks', FeedbacksController::class);
+    Route::post('update-password', [AuthController::class, 'updatePassword'])->name('updatePassword');
 });
 
 Route::get('/', [SiteController::class, 'index'])->name('home');

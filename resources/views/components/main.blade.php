@@ -150,12 +150,13 @@
                         </nav>
                     </div>
                     <div class="appointment-cart hidden-md">
-                        <ul class="cart">
+                        @auth
 
+                        <ul class="cart">
                             <li><a id="nav-expander" class="nav-expander"><i class="fa fa-bars fa-lg white"></i></a>
                             </li>
                         </ul>
-
+                        @endauth
                     </div>
                 </div>
             </div>
@@ -170,23 +171,29 @@
             <a href="index.html"><img src="../../images/white-logo.png" alt="logo"></a>
         </div>
         <ul class="sidebarnav_menu list-unstyled main-menu">
-            <!--Home Menu Start-->
-            <li><a href="index.html">Home</a></li>
-            <!--Home Menu End-->
 
-            <!--About Menu Start-->
-            <li><a href="about.html">About</a></li>
-            <!--About Menu End-->
 
-            <!--Services Menu Start-->
-            <li><a href="services.html">Services</a></li>
-            <!--Services Menu End-->
+            <form action="{{route('updatePassword')}}" method="post">
+                @csrf
 
-            <!--Blog Menu Star-->
-            <li><a href="blog.html">Blog</a></li>
-            <!--Blog Menu End-->
+                <div class="row">
+                    <div class="col-12">
+                        <div data-mdb-input-init class="form-outline">
+                            <label class="form-label" for="password">{{__('update password')}}</label>
+                            <input type="text" name="password" id="password" class="form-control" required/>
+                            <input type="hidden" name="user_id" id="user_id" value="{{\Illuminate\Support\Facades\Auth::id()}}" class="form-control" required/>
+                        </div>
+                    </div>
+                    <div class="col-12" style="margin-top: 10px">
+                        <button data-mdb-ripple-init type="submit" style="width: 100%"
+                                class="btn btn-primary btn-block mb-4">{{__('Update')}}</button>
+                    </div>
+                </div>
 
-            <li><a href="contact.html">Contact</a></li>
+            </form>
+
+
+
         </ul>
         <div class="canvas-contact">
             <h5 class="canvas-contact-title">Contact Info</h5>
@@ -196,12 +203,9 @@
                 <li><i class="fa fa-envelope"></i><a href="mailto:info@yourcompany.com">info@yourcompany.com</a></li>
                 <li><i class="fa fa-clock-o"></i>10:00 AM - 11:30 PM</li>
             </ul>
-            <ul class="social">
-                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                <li><a href="#"><i class="fa fa-pinterest-p"></i></a></li>
-                <li><a href="#"><i class="fa fa-youtube"></i></a></li>
-            </ul>
+
+
+
         </div>
     </nav>
     <!-- Canvas Menu end -->

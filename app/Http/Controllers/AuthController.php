@@ -170,4 +170,24 @@ class AuthController extends Controller
 
         return redirect('/');
     }
+
+    public function updatePassword(Request $request)
+    {
+
+      $data  = $request->validate([
+          'password'=>'required',
+          'user_id'=>'required'
+      ]);
+
+      $user = User::where('id',$data['user_id'])->first();
+
+//        if ($user->email) {
+//            Mail::to($user)->send(new UserRegister($user, $data['password']));
+//        }
+        $user->password = Hash::make($data['password']);
+        $user->save();
+        return redirect('/')->with('message','Muvaffaqiyatli yangilandi');
+
+
+    }
 }
