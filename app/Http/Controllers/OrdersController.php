@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Districts;
 use App\Models\Orders;
+use App\Models\Regions;
+use App\Models\UserAddress;
 use App\Rules\PhoneNumber;
 use App\Services\OrderService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Validator;
 
 class OrdersController extends Controller
@@ -24,8 +28,19 @@ class OrdersController extends Controller
     public function index()
     {
         $orders = Orders::where('user_id', Auth::id())->where('status', 0)->get();
-
-        return view('orders.index')->with(['orders' => $orders]);
+        $regions = Cache::remember('regions_list',now()->addSeconds(3600),function (){
+            return Regions::get();
+        });
+        $districts = Cache::remember('districts_list',now()->addSeconds(3600),function (){
+            return Districts::get();
+        });
+        $userAddress = UserAddress::where('user_id',Auth::id())->first();
+        return view('orders.index',[
+            'orders' => $orders,
+            'regions' => $regions,
+            'districts' => $districts,
+            'userAddress' => $userAddress,
+        ]);
 
     }
 

@@ -77,4 +77,9 @@ class User extends Authenticatable implements FilamentUser
         }
         return false;
     }
+
+    public function address()
+    {
+        return $this->hasOne(UserAddress::class,'user_id','id');
+    }
 }

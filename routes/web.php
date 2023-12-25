@@ -72,6 +72,8 @@ Route::middleware('auth')->group(function () {
  Route::get('products/index/{category_id}',[ProductsController::class,'index'])->name('productIndex');
  Route::resource('orders',\App\Http\Controllers\OrdersController::class);
  Route::post('orders/save',[\App\Http\Controllers\OrdersController::class,'orderSave'])->name('orderSave');
+ Route::resource('userAddress',\App\Http\Controllers\UserAddressController::class);
+ Route::get('districts',[\App\Http\Controllers\UserAddressController::class,'districts'])->name('districts');
 // Route::resource('file',\App\Http\Controllers\FileController::class);
  Route::post('comments/store',[\App\Http\Controllers\CommentsController::class,'store'])->name('comments.store');
  Route::delete('file-delete',[\App\Http\Controllers\FileController::class,'delete'])->name('file-delete');
