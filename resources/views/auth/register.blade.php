@@ -4,7 +4,7 @@
             <div class="offset-md-2 col-lg-5 col-md-7 offset-lg-4 offset-md-3">
                 <div class="panel border bg-white">
                     <div class="panel-heading">
-                        <h3 class="pt-3 font-weight-bold">Ro'yxatdan o'tish</h3>
+                        <h3 class="pt-3 font-weight-bold">{{__("Ro'yxatdan otish")}}</h3>
                     </div>
                     <div class="panel-body p-3">
                         <form action="{{route('register.store')}}" method="POST">
@@ -32,7 +32,7 @@
 
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-primary btn-block mt-3">Sign up</button>
+                            <button type="submit" class="btn btn-primary btn-block mt-3">{{__("Ro'yxatdan otish")}}</button>
 
                         </form>
                     </div>

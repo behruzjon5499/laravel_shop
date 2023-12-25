@@ -4,7 +4,7 @@
             <div class="offset-md-2 col-lg-5 col-md-7 offset-lg-4 offset-md-3">
                 <div class="panel border bg-white" style="min-height: 240px">
                     <div class="panel-heading">
-                        <h3 class="pt-3 font-weight-bold">Parolni o'zgartirish</h3>
+                        <h3 class="pt-3 font-weight-bold">{{__("Parolni o'zgartirish")}}</h3>
                     </div>
                     <div class="panel-body p-3">
                         <form action="{{route('password.send')}}" method="POST">
@@ -14,7 +14,7 @@
                                     <span class="far fa-user p-2"></span>
                                     <input type="text" name="email"  placeholder="Email" required></div>
                             </div>
-                            <button type="submit" class="btn btn-primary btn-block mt-3">Send</button>
+                            <button type="submit" class="btn btn-primary btn-block mt-3">{{__("Jo'natish")}}</button>
 
                         </form>
                     </div>

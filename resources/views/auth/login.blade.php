@@ -4,7 +4,7 @@
             <div class="offset-md-2 col-lg-5 col-md-7 offset-lg-4 offset-md-3">
                 <div class="panel border bg-white">
                     <div class="panel-heading">
-                        <h3 class="pt-3 font-weight-bold">Login</h3>
+                        <h3 class="pt-3 font-weight-bold">{{__("Kirish")}}</h3>
                     </div>
                     <div class="panel-body p-3">
                         <form action="{{route('authenticate')}}" method="POST">
@@ -16,16 +16,15 @@
                             </div>
                             <div class="form-group py-1 pb-2">
                                 <div class="input-field"><span class="fas fa-lock px-2"></span>
-                                    <input type="password"  name="password" placeholder="Enter your Password" required>
-                                    <button class="btn bg-white text-muted"><span class="far fa-eye-slash"></span>
-                                    </button>
+                                    <input type="password" id="password" name="password" placeholder="Enter your Password" required>
+                                     <span class="far fa-eye-slash"></span>
                                 </div>
                             </div>
                             <div class="form-inline"><input type="checkbox" name="remember" id="remember"> <label
-                                    for="remember" class="text-muted">Remember me</label>
-                                <a href="{{route('forgot.password')}}" id="forgot" class="font-weight-bold">Forgot password?</a></div>
+                                    for="remember" class="text-muted">{{__('Eslab qol')}}</label>
+                                <a href="{{route('forgot.password')}}" id="forgot" class="font-weight-bold">{{__('Parolni unutdingizmi?')}}</a></div>
                             <button type="submit" class="btn btn-primary btn-block mt-3">Login</button>
-                            <div class="text-center pt-4 text-muted">Don't have an account? <a href="{{route('register')}}">Sign up</a>
+                            <div class="text-center pt-4 text-muted">{{__("Sizda akkaunt yo'qmi?")}} <a href="{{route('register')}}">{{__("Ro'yxatdan otish")}}</a>
                             </div>
                         </form>
                     </div>
@@ -164,4 +163,21 @@
         }
     </style>
 </x-auth>
+
+<script type="text/javascript">
+
+    const togglePassword = document.querySelector(".fa-eye-slash");
+    const password = document.querySelector("#password");
+
+    togglePassword.addEventListener("click", function () {
+
+        // toggle the type attribute
+        const type = password.getAttribute("type") === "password" ? "text" : "password";
+        password.setAttribute("type", type);
+        // toggle the eye icon
+        this.classList.toggle('fa-eye');
+        this.classList.toggle('fa-eye-slash');
+    });
+
+</script>
 
