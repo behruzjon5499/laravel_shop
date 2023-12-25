@@ -178,6 +178,7 @@ return [
         App\Providers\FilamentServiceProvider::class,
         GoogleMaps\ServiceProvider\GoogleMapsServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
+        \App\Providers\ViewServiceProvider::class,
     ],
 
     /*
