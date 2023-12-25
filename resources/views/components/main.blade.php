@@ -75,7 +75,7 @@
                             <li><i class="fa fa-envelope-o"></i><a href="mailto:info@yourwebsite.com">{{$contact->mail}}</a>
                             </li>
 
-                            <li><i class="fa fa-phone"></i><a href="tel:+123456789">{{$contact->phone}}</a></li>
+                            <li><i class="fa fa-phone"></i><a href="{{$contact->phone}}">{{$contact->phone}}</a></li>
 
                             <li><i class="fa fa-location-arrow"></i>
                                 <p>{{$contact->address}}</p></li>
@@ -121,7 +121,7 @@
                 </div>
                 <div class="col-lg-9">
                     <div class="main-menu">
-                        <a class="rs-menu-toggle"><i class="fa fa-bars"></i>Menu</a>
+                        <a class="rs-menu-toggle"><i class="fa fa-bars"></i>{{__('Menu')}}</a>
                         <nav class="rs-menu">
                             <ul class="nav-menu">
                                 <!-- Home -->
@@ -151,7 +151,6 @@
                     </div>
                     <div class="appointment-cart hidden-md">
                         @auth
-
                         <ul class="cart">
                             <li><a id="nav-expander" class="nav-expander"><i class="fa fa-bars fa-lg white"></i></a>
                             </li>
@@ -165,14 +164,12 @@
     <!-- Header Menu End -->
 
     <!-- Canvas Menu start -->
-    <nav class="right_menu_togle">
+    <nav class="right_menu_togle" style="width: 30em;">
         <div class="close-btn"><span id="nav-close" class="text-center"><i class="fa fa-close"></i></span></div>
         <div class="canvas-logo">
-            <a href="index.html"><img src="../../images/white-logo.png" alt="logo"></a>
+            <a href="{{route('site.index')}}"><img src="../../images/white-logo.png" alt="logo"></a>
         </div>
         <ul class="sidebarnav_menu list-unstyled main-menu">
-
-
             <form action="{{route('updatePassword')}}" method="post">
                 @csrf
 
@@ -189,24 +186,52 @@
                                 class="btn btn-primary btn-block mb-4">{{__('Update')}}</button>
                     </div>
                 </div>
+            </form>
+
+
+            <div class="canvas-contact">
+                <h5 class="canvas-contact-title">{{__("Shaxsiy ma'lumotlar")}}</h5>
+                <ul class="contact">
+                    <li> {{__('Name')}} : {{\Illuminate\Support\Facades\Auth::user()->name}}</li>
+                    <li>{{__('Phone')}} : {{\Illuminate\Support\Facades\Auth::user()->phone}}</li>
+                    <li> {{__('Email')}} : {{\Illuminate\Support\Facades\Auth::user()->email}} </li>
+                </ul>
+            </div>
+
+
+            <form action="{{route('updatePersonalData')}}" method="post">
+                @csrf
+
+                <div class="row">
+                    <div class="col-12">
+                        <div data-mdb-input-init class="form-outline">
+                            <label class="form-label" for="Name">{{__('Name')}}</label>
+                            <input type="text" name="name" id="Name" value="{{\Illuminate\Support\Facades\Auth::user()->name}}" class="form-control" required/>
+                            <input type="hidden" name="user_id" id="user_id" value="{{\Illuminate\Support\Facades\Auth::id()}}" class="form-control" required/>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div data-mdb-input-init class="form-outline">
+                            <label class="form-label" for="phone">{{__('phone')}}</label>
+                            <input type="text" name="phone" id="phone" value="{{\Illuminate\Support\Facades\Auth::user()->phone}}" class="form-control" required/>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div data-mdb-input-init class="form-outline">
+                            <label class="form-label" for="email">{{__('email')}}</label>
+                            <input type="text" name="email" id="email" class="form-control" value="{{\Illuminate\Support\Facades\Auth::user()->email}}" required/>
+                        </div>
+                    </div>
+                    <div class="col-12" style="margin-top: 10px">
+                        <button data-mdb-ripple-init type="submit" style="width: 100%"
+                                class="btn btn-primary btn-block mb-4">{{__('Update')}}</button>
+                    </div>
+                </div>
 
             </form>
 
 
-
         </ul>
-        <div class="canvas-contact">
-            <h5 class="canvas-contact-title">Contact Info</h5>
-            <ul class="contact">
-                <li><i class="fa fa-globe"></i>Tikkatuli Road, New York, USA</li>
-                <li><i class="fa fa-phone"></i>+123445789</li>
-                <li><i class="fa fa-envelope"></i><a href="mailto:info@yourcompany.com">info@yourcompany.com</a></li>
-                <li><i class="fa fa-clock-o"></i>10:00 AM - 11:30 PM</li>
-            </ul>
-
-
-
-        </div>
     </nav>
     <!-- Canvas Menu end -->
 </header>

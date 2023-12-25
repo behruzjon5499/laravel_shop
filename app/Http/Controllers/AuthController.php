@@ -188,6 +188,24 @@ class AuthController extends Controller
         $user->save();
         return redirect('/')->with('message','Muvaffaqiyatli yangilandi');
 
+    }
+    public function updatePersonalData(Request $request)
+    {
+        $data  = $request->validate([
+            'name'=>'required',
+            'phone'=>'required',
+            'email'=>'required',
+            'user_id'=>'required'
+        ]);
+        $user = User::where('id',$data['user_id'])->first();
+//        if ($user->email) {
+//            Mail::to($user)->send(new UserRegister($user, $data['password']));
+//        }
+        $user->name = $data['name'];
+        $user->phone = $data['phone'];
+        $user->email = $data['email'];
+        $user->save();
+        return redirect('/')->with('message','Muvaffaqiyatli yangilandi');
 
     }
 }
