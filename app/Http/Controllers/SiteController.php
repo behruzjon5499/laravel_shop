@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\About;
+use App\Models\Brands;
 use App\Models\Category;
 use App\Models\Feedbacks;
 use App\Models\News;
@@ -35,15 +36,18 @@ class SiteController extends Controller
             return Sliders::get();
         });
         $products = Cache::remember('products_list',now()->addSeconds(300),function (){
-            return Products::latest()->limit(6)->get();
+            return Products::latest()->get();
         });
-
+        $brands = Cache::remember('brands_list',now()->addSeconds(300),function (){
+            return Brands::latest()->limit(6)->get();
+        });
         return view('site.index',[
             'categories' => $categories,
             'partners' => $partners,
             'news' => $news,
             'sliders' => $sliders,
             'products' => $products,
+            'brands' => $brands,
         ]);
 
     }

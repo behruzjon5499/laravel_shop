@@ -97,6 +97,47 @@
     </section>
     <!-- products End -->
 
+    <!-- Portfolio Section Start -->
+    <div id="rs-portfolio" class="rs-portfolio sec-spacer">
+        <div class="container">
+            <div class="sec-title-2">
+                <h3>{{__('Our Brands')}}<span>{{__('Brands')}}</span></h3>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                       <div class="gridFilter creative-filter">
+                        <button class="active" data-filter="*">{{__('All Products')}}</button>
+                           @foreach($brands as $brand)
+                        <button data-filter=".{{$brand->id}}">{{$brand->name}}</button>
+                           @endforeach
+                    </div><!-- .gridFilter end-->
+                    <div class="row grid">
+                        @foreach($products as $product)
+                        <div class="col-lg-4 col-md-6 col-sm-12 mb-30 grid-item {{$product->brand_id}}">
+                            <div class="gallery-item popup-inner creative-item">
+                                <div class="gallery-content">
+                                    <img src="{{Storage::url($product->photo)}}" style="width: 100%;height: 300px" alt="" />
+                                    <div class="popup-text">
+                                        <div class="contents-here">
+                                            <h4 class="title"><a href="{{route('products.show',['product'=>$product->id])}}">{{\App\Helpers\LanguageHelper::get($product,'name')}}</a></h4>
+
+                                        </div>
+                                        <div class="filter-icon">
+                                            <i class="fa fa-link" aria-hidden="true"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><!-- .gallery-item end -->
+                        </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Portfolio Section End -->
+
+
     <!-- Expertise Area satar -->
     <div class="why-choose-us defult-style sec-color pt-100">
         <div class="container">
