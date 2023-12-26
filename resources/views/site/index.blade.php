@@ -25,11 +25,6 @@
                                     {{mb_strimwidth(\App\Helpers\LanguageHelper::get($slider,'description'), 0, 150, '...')}}
                                 </div>
                             </div>
-                            <div class="slider-bottom">
-                                <ul>
-                                    <li><a href="#" class="readon">{{__('Buy now')}}</a></li>
-                                </ul>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -45,7 +40,7 @@
             <div class="work-sec-gallery">
                 <div class="row">
                     @foreach($categories as $category)
-                    <div class="col-lg-4 col-md-6 col-sm-12 mb-sm-30">
+                    <div class="col-lg-3 col-md-6 col-sm-12 mb-sm-30">
                         <div class="work-column">
                             <div class="common-box">
                                 <img src={{ Storage::disk('public')->url($category->photo)}} alt="" style="height: 300px;">
@@ -113,7 +108,7 @@
                     </div><!-- .gridFilter end-->
                     <div class="row grid">
                         @foreach($products as $product)
-                        <div class="col-lg-4 col-md-6 col-sm-12 mb-30 grid-item {{$product->brand_id}}">
+                        <div class="col-lg-3 col-md-6 col-sm-12 mb-30 grid-item {{$product->brand_id}}">
                             <div class="gallery-item popup-inner creative-item">
                                 <div class="gallery-content">
                                     <a href="{{route('products.show',['product'=>$product->id])}}"> <img src="{{Storage::url($product->photo)}}" style="width: 100%;height: 300px" alt="" /></a>
@@ -142,22 +137,14 @@
     <section id="rs-blog" class="rs-blog sec-spacer">
         <div class="container">
             <div class="sec-title">
-                <h3>Latest News</h3>
+                <h3>{{__("Oxirgi yangiliklar")}}</h3>
             </div>
             <div class="rs-carousel owl-carousel" data-loop="true" data-items="3" data-margin="30" data-autoplay="true" data-autoplay-timeout="5000" data-smart-speed="2000" data-dots="false" data-nav="true" data-nav-speed="false" data-mobile-device="1" data-mobile-device-nav="true" data-mobile-device-dots="false" data-ipad-device="2" data-ipad-device-nav="true" data-ipad-device-dots="false" data-ipad-device2="1" data-ipad-device-nav2="true" data-ipad-device-dots2="false" data-md-device="3" data-md-device-nav="true" data-md-device-dots="false">
              @foreach($news as $new)
                 <div class="blog-item" >
                     <div class="blog-img">
-                        <img src="{{ Storage::disk('public')->url($new->photo)}}" style="height: 350px" alt="Blog Image">
-                        <div class="blog-img-content">
-                            <div class="display-table">
-                                <div class="display-table-cell">
-                                    <a class="blog-link" href="#" title="Blog Link">
-                                        <i class="fa fa-link"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
+                        <a href="{{route('news.show',['id'=>$new->id])}}"> <img src="{{ Storage::disk('public')->url($new->photo)}}" style="height: 350px" alt="Blog Image"></a>
+
                     </div>
                     <div class="content-wrapper" >
                         <div class="blog-meta">
@@ -166,10 +153,9 @@
                             </ul>
                         </div>
                         <div class="blog-desc" style="height: 150px">
-                            <a href="#">{{$new->title_ru}}</a>
+                            <a href="{{route('news.show',['id'=>$new->id])}}">{{$new->title_ru}}</a>
                             <p> {{mb_strimwidth($new->description_uz, 0, 150, '...')}}</p>
                         </div>
-                        <a href="{{route('news.show',['id' => $new->id])}}" class="readon">Read More</a>
                     </div>
                 </div>
                 @endforeach

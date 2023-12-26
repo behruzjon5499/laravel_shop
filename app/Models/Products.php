@@ -44,4 +44,8 @@ class Products extends Model
     {
         return $this->hasMany(Orders::class,'product_id','id');
     }
+    public function promoCode()
+    {
+        return $this->hasOne(PromoCode::class,'product_id','id')->where('end_date', '>=', date('Y-m-d H:i:s'));
+    }
 }

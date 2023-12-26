@@ -11,8 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('user_addresses', function (Blueprint $table) {
+        Schema::create('promo_codes', function (Blueprint $table) {
             $table->id();
+            $table->integer('product_id');
+            $table->string('code');
+            $table->integer('percent');
+            $table->date('start_date');
+            $table->date('end_date');
             $table->timestamps();
         });
     }
@@ -22,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('user_addresses');
+        Schema::dropIfExists('promo_codes');
     }
 };
