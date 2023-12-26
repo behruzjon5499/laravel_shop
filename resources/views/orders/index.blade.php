@@ -4,99 +4,137 @@
         Order
     </x-slot:title>
 
-    <form action="{{route('orderSave')}}" method="post">
-        @csrf
-        <div class="containerorder">
+    @if(count($orders)>0)
+        <form action="{{route('orderSave')}}" method="post">
+            @csrf
+            <div class="containerorder">
 
 
-            <section id="cart">
-                @foreach($orders as $key=>$order)
-                    <article class="product">
-                        <header>
-                            <a class="remove">
-                                <img src="{{Storage::url($order->product->photo)}}" alt="">
+                <section id="cart">
+                    @foreach($orders as $key=>$order)
+                        <article class="product">
+                            <header>
+                                <a class="remove">
+                                    <img src="{{Storage::url($order->product->photo)}}" alt="">
 
-                                <h3>{{__('Remove product')}}</h3>
-                            </a>
-                        </header>
+                                    <h3>{{__('Remove product')}}</h3>
+                                </a>
+                            </header>
 
-                        <div class="content">
+                            <div class="content">
 
-                            <h1>{{\App\Helpers\LanguageHelper::get($order->product,'name')}}</h1>
-                            <input type="hidden" name="Request[{{$key}}][name]" value="{{$order->name}}" id="name"
-                                   class="form-control"/>
-                            <input type="hidden" name="Request[{{$key}}][count]" value="{{$order->count}}"
-                                   id="orderCount">
-                            <input type="hidden" name="Request[{{$key}}][price]" value="{{$order->price}}"
-                                   id="orderPrice">
-                            <input type="hidden" name="Request[{{$key}}][product_id]" value="{{$order->product->id}}">
-                            <input type="hidden" name="Request[{{$key}}][order_id]" value="{{$order->id}}">
-                            <input type="hidden" name="Request[{{$key}}][status]"
-                                   value="{{\App\Models\Orders::TYPE_SALE}}">
+                                <h1>{{\App\Helpers\LanguageHelper::get($order->product,'name')}}</h1>
+                                <input type="hidden" name="Request[{{$key}}][name]" value="{{$order->name}}" id="name"
+                                       class="form-control"/>
+                                <input type="hidden" name="Request[{{$key}}][count]" value="{{$order->count}}"
+                                       id="orderCount">
+                                <input type="hidden" name="Request[{{$key}}][price]" value="{{$order->price}}"
+                                       id="orderPrice">
+                                <input type="hidden" name="Request[{{$key}}][product_id]"
+                                       value="{{$order->product->id}}">
+                                <input type="hidden" name="Request[{{$key}}][order_id]" value="{{$order->id}}">
+                                <input type="hidden" name="Request[{{$key}}][status]"
+                                       value="{{\App\Models\Orders::STATUS_SALE}}">
 
+                            </div>
+
+                            <footer class="content">
+                                <span class="qt-minus">-</span>
+                                <span class="qt">{{$order->count}}</span>
+                                <span class="qt-plus">+</span>
+
+                                <h2 class="full-price">
+                                    {{$order->price}}
+                                </h2>
+
+                                <h2 class="price">
+                                    {{$order->product->price}}
+                                </h2>
+                            </footer>
+                        </article>
+                    @endforeach
+                </section>
+            </div>
+
+            <footer id="site-footer">
+                <div class="container clearfix" style="height: 100px">
+
+                    <div class="left">
+
+                        <div class="form-check" style="min-height: 2.5em">
+                            <input class="form-check-input" type="radio" name="typeDelivery" id="flexRadioDefault1"
+                                   style="font-size: 30px" checked>
+                            <label class="form-check-label" for="flexRadioDefault1" style="font-size: 30px">
+                                {{__("Ofisdan olib ketish")}}
+                            </label>
+                        </div>
+                        <div class="form-check" style="min-height: 2.5em">
+                            <input class="form-check-input" type="radio" name="typeDelivery" id="flexRadioDefault2"
+                                   style="font-size: 30px">
+                            <label class="form-check-label" for="flexRadioDefault2" style="font-size: 30px">
+                                {{__("Kurer orqali yetkazib berish")}}
+                            </label>
                         </div>
 
-                        <footer class="content">
-                            <span class="qt-minus">-</span>
-                            <span class="qt">{{$order->count}}</span>
-                            <span class="qt-plus">+</span>
+                        <input type="hidden" name="Request[{{$key}}][type]" id="type" value="0">
+                        {{--            <h2 class="subtotal">Subtotal: <span>163.96</span>€</h2>--}}
+                        {{--            <h3 class="tax">Taxes (5%): <span>8.2</span>€</h3>--}}
+                        {{--            <h3 class="shipping">Shipping: <span>5.00</span>€</h3>--}}
+                    </div>
 
-                            <h2 class="full-price">
-                                {{$order->price}}
-                            </h2>
+                    <div class="right">
+                        <h1 class="total">Total: <span> </span></h1>
+                        <button type="submit" class="btn btn-success"> {{__('Checkout')}} </button>
+                    </div>
 
-                            <h2 class="price">
-                                {{$order->product->price}}
-                            </h2>
-                        </footer>
-                    </article>
-                @endforeach
-            </section>
-        </div>
-
-        <footer id="site-footer">
-            <div class="container clearfix">
-
-                <div class="left">
-                    {{--            <h2 class="subtotal">Subtotal: <span>163.96</span>€</h2>--}}
-                    {{--            <h3 class="tax">Taxes (5%): <span>8.2</span>€</h3>--}}
-                    {{--            <h3 class="shipping">Shipping: <span>5.00</span>€</h3>--}}
                 </div>
+            </footer>
+        </form>
 
-                <div class="right">
-                    <h1 class="total">Total: <span> </span></h1>
-                    <button type="submit" class="btn btn-success"> {{__('Checkout')}} </button>
-                </div>
+        <div class="container" id="delivery" style="display: none">
+            <h1>{{__('Yetkazib berish usuli')}}</h1>
 
+
+            <h4>{{$userAddress->district->region->name}}    {{$userAddress->district->name}} {{$userAddress->name}}</h4>
+            <div class="delivery" data-toggle="modal" data-target="#addressModal"
+                 style="text-align: center;border-radius: 5%; border: 2px solid #e8e8e8;margin-bottom: 20px">
+                <svg class="svg-circleplus" viewBox="0 0 100 100" style="height: 40px; stroke: red;">
+                    <line x1="32.5" y1="50" x2="67.5" y2="50" stroke-width="5"></line>
+                    <line x1="50" y1="32.5" x2="50" y2="67.5" stroke-width="5"></line>
+                </svg>
+                @if(\Illuminate\Support\Facades\Auth::user()->address)
+                    <h3>
+                        {{__("Manzil o'zgartirish")}}
+                    </h3>
+                @else
+                    <h3>
+                        {{__("Manzil qo'shish")}}
+                    </h3>
+                @endif
             </div>
-        </footer>
-    </form>
-
-    <div class="container">
-        <h1>{{__('Yetkazib berish usuli')}}</h1>
 
 
-        <h4>{{$userAddress->district->region->name}}    {{$userAddress->district->name}} {{$userAddress->name}}</h4>
-        <div class="delivery" data-toggle="modal" data-target="#addressModal"
-             style="text-align: center;border-radius: 5%; border: 2px solid #e8e8e8;margin-bottom: 20px">
-            <svg class="svg-circleplus" viewBox="0 0 100 100" style="height: 40px; stroke: red;">
-                <line x1="32.5" y1="50" x2="67.5" y2="50" stroke-width="5"></line>
-                <line x1="50" y1="32.5" x2="50" y2="67.5" stroke-width="5"></line>
-            </svg>
-            @if(\Illuminate\Support\Facades\Auth::user()->address)
-            <h3 >
-                {{__("Manzil o'zgartirish")}}
-            </h3>
-            @else
-                <h3>
-                    {{__("Manzil qo'shish")}}
-                </h3>
-            @endif
         </div>
 
+    @else
 
-    </div>
+        <div class="row" style="text-align: center;margin-bottom: 200px;">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <img src="/images/cart-logo.png" style="width: 100px;height: 100px" alt="">
+                <h1>{{__("Savatchangiz bo'sh")}}</h1>
+                <h4>{{__("Lekin siz uni har doim to'ldirishingiz mumkin")}}</h4>
 
+
+                <button class="btn btn-success" style="background-color: #4D6DE6"><a style="color:white;"
+                                                                                     href="{{route('home')}}">{{__("Asosiy sahifaga")}}</a>
+                </button>
+            </div>
+            <div class="col-md-4"></div>
+
+        </div>
+
+    @endif
 
 
     <div class="modal fade" id="addressModal" tabindex="-1" aria-labelledby="addressModalLabel" aria-hidden="true">
@@ -121,44 +159,49 @@
                                     <select name="region_code" class="form-control" id="region_code" required>
                                         <option value="">{{__('Select')}}</option>
                                         @foreach($regions as $region)
-                                            <option value="{{$region->code}}" <?= $userAddress->district->region->code == $region->code ? "selected" :" " ?>>{{$region->name}}</option>
+                                            <option
+                                                value="{{$region->code}}" <?= $userAddress->district->region->code == $region->code ? "selected" : " " ?>>{{$region->name}}</option>
                                         @endforeach
                                     </select>
                                 </div>
-                                </div>
+                            </div>
                             <div class="col-6">
                                 <div class="form-group">
                                     <label for="district_code">{{__('Districts')}}</label>
-                                    <select name="district_code" class="form-control" id="district_code"  required>
+                                    <select name="district_code" class="form-control" id="district_code" required>
                                         <option value="">{{__('Select')}}</option>
                                         @foreach($districts as $district)
-                                            <option value="{{$district->code}}" <?=$district->code == \Illuminate\Support\Facades\Auth::user()->address->district_code ? 'selected' : "" ?>>{{$district->name}}</option>
+                                            <option
+                                                value="{{$district->code}}" <?=$district->code == \Illuminate\Support\Facades\Auth::user()->address->district_code ? 'selected' : "" ?>>{{$district->name}}</option>
                                         @endforeach
                                     </select>
                                 </div>
 
                             </div>
+                        </div>
+                        <div class="col-12">
+                            <div data-mdb-input-init class="form-outline">
+                                <label class="form-label" for="name">{{__('Address')}}</label>
+                                <input type="text" name="name" id="name" class="form-control"
+                                       value="{{\Illuminate\Support\Facades\Auth::user()->address->name}}" required/>
+                                <input type="hidden" name="user_id" id="user_id"
+                                       value="{{\Illuminate\Support\Facades\Auth::id()}}" class="form-control"
+                                       required/>
                             </div>
-                            <div class="col-12">
-                                <div data-mdb-input-init class="form-outline">
-                                    <label class="form-label" for="name">{{__('Address')}}</label>
-                                    <input type="text" name="name" id="name" class="form-control" value="{{\Illuminate\Support\Facades\Auth::user()->address->name}}" required/>
-                                    <input type="hidden" name="user_id" id="user_id" value="{{\Illuminate\Support\Facades\Auth::id()}}" class="form-control" required/>
-                                </div>
-                            </div>
+                        </div>
                         <div class="col-12" style="margin-top: 10px">
                             <button data-mdb-ripple-init type="submit" style="width: 100%"
                                     class="btn btn-primary btn-block mb-4">{{__('Submit')}}</button>
                         </div>
-                        </div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="submit" style="width: 100%"
-                                class="btn btn-primary">{{__("Submit")}}</button>
-                    </div>
-                </form>
             </div>
+            <div class="modal-footer">
+                <button type="submit" style="width: 100%"
+                        class="btn btn-primary">{{__("Submit")}}</button>
+            </div>
+            </form>
         </div>
+    </div>
     </div>
 
 
@@ -268,26 +311,36 @@
     </script>
 </x-main>
 <script>
-        $('#region_code').on('click',function() {
+    $('#region_code').on('click', function () {
         var region_code = $(this).val();
 
         $.ajax({
-            url:'{{route('districts')}}',
-            data:{'region_code':region_code},
-            method:'get',
-            success:function(res) {
+            url: '{{route('districts')}}',
+            data: {'region_code': region_code},
+            method: 'get',
+            success: function (res) {
                 console.log(res);
                 var html = '';
                 html += "<option value=''></option>";
-                res.forEach(function(item){
-                    html += "<option value='"+ item.code+"' >"+item.code+' - '+item.name+'</option>';
+                res.forEach(function (item) {
+                    html += "<option value='" + item.code + "' >" + item.code + ' - ' + item.name + '</option>';
                 })
                 $('#district_code').html(html);
             },
-            error:function() {
+            error: function () {
                 alert('error')
             }
         })
+
+    });
+    $('#flexRadioDefault1').on('click', function () {
+        $('#delivery').css('display','none');
+        $("#type").val(0);
+
+    });
+    $('#flexRadioDefault2').on('click', function () {
+        $('#delivery').css('display','block');
+        $("#type").val(1);
 
     });
 </script>

@@ -10,8 +10,12 @@ class Orders extends Model
     use HasFactory;
    protected $primaryKey = 'id';
 
-   const TYPE_PROCESS =0;
-   const TYPE_SALE =1;
+   const STATUS_PROCESS =0;
+   const STATUS_SALE =1;
+
+   const TYPE_OFFICE = 0;
+   const TYPE_DELIVERY = 1;
+
     protected $attributes = [
    //
   ];
@@ -23,6 +27,7 @@ class Orders extends Model
      'count',
      'price',
      'status',
+     'type',
     ];
     public function product()
     {

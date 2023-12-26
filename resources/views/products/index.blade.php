@@ -17,16 +17,8 @@
                 @foreach($products as $product)
                     <div class="blog-item   col-lg-4 col-md-6 col-sm-12 mb-sm-30" >
                         <div class="blog-img">
-                            <img src="{{ Storage::url($product->photo)}}" style="height: 350px" alt="Blog Image">
-                            <div class="blog-img-content">
-                                <div class="display-table">
-                                    <div class="display-table-cell">
-                                        <a class="blog-link" href="#" title="Blog Link">
-                                            <i class="fa fa-link"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
+                            <a href="{{route('products.show',['product' => $product])}}">  <img src="{{ Storage::url($product->photo)}}" style="height: 350px" alt="Blog Image"></a>
+
                         </div>
                         <div class="content-wrapper" >
                             <div class="blog-meta">
@@ -39,7 +31,7 @@
                                 <p> {{mb_strimwidth(\App\Helpers\LanguageHelper::get($product, 'description'), 0, 150, '...')}}</p>
                                 <p> {{ number_format($product->price) }}</p>
                             </div>
-                            <a href="{{route('products.show',['product' => $product])}}" class="readon">{{__('Read More')}}</a>
+
                         </div>
                     </div>
                 @endforeach

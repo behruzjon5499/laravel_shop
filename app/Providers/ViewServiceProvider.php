@@ -23,7 +23,7 @@ class ViewServiceProvider extends ServiceProvider
     public function boot(): void
     {
        View::composer('components.main',function ($view){
-           $view->with('order_count',Orders::where('user_id',Auth::id())->where('status',Orders::TYPE_PROCESS)->count());
+           $view->with('order_count',Orders::where('user_id',Auth::id())->where('status',Orders::STATUS_PROCESS)->count());
        });
 
     }

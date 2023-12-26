@@ -116,7 +116,7 @@
                         <div class="col-lg-4 col-md-6 col-sm-12 mb-30 grid-item {{$product->brand_id}}">
                             <div class="gallery-item popup-inner creative-item">
                                 <div class="gallery-content">
-                                    <img src="{{Storage::url($product->photo)}}" style="width: 100%;height: 300px" alt="" />
+                                    <a href="{{route('products.show',['product'=>$product->id])}}"> <img src="{{Storage::url($product->photo)}}" style="width: 100%;height: 300px" alt="" /></a>
                                     <div class="popup-text">
                                         <div class="contents-here">
                                             <h4 class="title"><a href="{{route('products.show',['product'=>$product->id])}}">{{\App\Helpers\LanguageHelper::get($product,'name')}}</a></h4>

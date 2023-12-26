@@ -112,7 +112,7 @@ class ProductsController extends Controller
     {
         $similarProducts = Products::where('category_id',$product->category_id)->latest()->limit(3)->get();
         $comments = Comments::where('able_id',$product->id)->where('able_type',Products::class)->latest()->limit(5)->get();
-        $order = Orders::where('product_id',$product->id)->where('status',Orders::TYPE_PROCESS)->latest()->first();
+        $order = Orders::where('product_id',$product->id)->where('status',Orders::STATUS_PROCESS)->latest()->first();
         return view('products.show', [
             'product' => $product,
             'similarProducts' => $similarProducts,

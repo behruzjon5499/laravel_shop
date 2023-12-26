@@ -323,7 +323,7 @@
                                     <input type="text" name="name" id="name" class="form-control"/>
                                     <input type="hidden" name="count" id="orderCount">
                                     <input type="hidden" name="price" id="orderPrice">
-                                    <input type="hidden" name="status" value="{{\App\Models\Orders::TYPE_SALE}}">
+                                    <input type="hidden" name="status" value="{{\App\Models\Orders::STATUS_SALE}}">
                                     <input type="hidden" name="product_id" value="{{$product->id}}">
                                 </div>
                             </div>

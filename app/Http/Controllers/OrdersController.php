@@ -79,6 +79,7 @@ class OrdersController extends Controller
             'Request.*.order_id' => 'required',
             'Request.*.product_id' => 'required',
             'Request.*.status' => 'integer',
+            'Request.*.type' => 'integer',
         ]);
         if (isset($validator->getData()['Request']) && count($validator->getData()['Request']) > 0) {
             foreach ($validator->getData()['Request'] as $data):

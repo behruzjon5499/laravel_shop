@@ -164,6 +164,7 @@
     <!-- Header Menu End -->
 
     <!-- Canvas Menu start -->
+    @auth
     <nav class="right_menu_togle" style="width: 30em;">
         <div class="close-btn"><span id="nav-close" class="text-center"><i class="fa fa-close"></i></span></div>
         <div class="canvas-logo">
@@ -233,6 +234,7 @@
 
         </ul>
     </nav>
+    @endauth
     <!-- Canvas Menu end -->
 </header>
 
